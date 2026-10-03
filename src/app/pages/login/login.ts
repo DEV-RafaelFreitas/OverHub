@@ -4,19 +4,19 @@ import { Router, RouterLink } from '@angular/router';
 
 type Perfil = 'admin' | 'cliente';
  
-interface usuarioTeste {
+interface UsuarioTeste {
   email: string;
   senha: string;
   perfil: Perfil;
 }
 
-const USUARIOS_TESTES: usuarioTeste[] =[
+const USUARIOS_TESTES: UsuarioTeste[] =[
   { email: 'admin@gmail.com', senha: '123456', perfil: 'admin' },
   { email: 'cliente@gmail.com', senha: '123456', perfil: 'cliente' },
 ];
 const ROTA_POR_PERFIL: Record<Perfil, string> = {
   admin: '/overhub/src/app/app.routes.ts',
-  cliente: '/overhub/src/app/app.routes.ts',
+  cliente: '',
 } //precisa definir a rota ate a manutencao de produtos e perfil do user
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
@@ -42,26 +42,26 @@ export class Login {
     }
 
     protected entrar(): void{
-      if(this.form.invalid){
-        this.form.markAllAsTouched();
-        return;
-      }
+        if(this.form.invalid){
+          this.form.markAllAsTouched();
+          return;
+        }
     
 
-    const { email, senha } = this.form.getRawValue();
-    const emailNormalizado = email.trim().toLowerCase();
+      const { email, senha } = this.form.getRawValue();
+      const emailNormalizado = email.trim().toLowerCase();
 
 
-    const usuario = USUARIOS_TESTES.find(
-      (u) => u.email == emailNormalizado && u.senha === senha,
-    );
+      const usuario = USUARIOS_TESTES.find(
+        (u) => u.email == emailNormalizado && u.senha === senha,
+      );
 
 
-    if(usuario){
-      void this.router.navigateByUrl(ROTA_POR_PERFIL[usuario.perfil]);
-      return;
+      if(usuario){
+        void this.router.navigateByUrl(ROTA_POR_PERFIL[usuario.perfil]);
+        return;
+      }
+
     }
-
-  }
 
 }

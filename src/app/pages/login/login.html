@@ -1,1 +1,66 @@
-<p>login works!</p>
+<main class="pagina">
+     <!--Login bloco 1-->
+     <section class="carta cartao-login">
+        <h1 class="titulo"> Bem vindo <span class="destaque"> de Volta!</span></h1>
+
+        <form [formGroup]="form" (ngSubmit)="entrar()" novalidate>
+            <div class="campo">
+                <label  class="sr-only" for="email">E-mail</label>
+                <input id="email" 
+                    type="email" 
+                    formControlName="email"
+                    placeholder="Em-mail" 
+                    autocomplete="email"
+                />
+                @if (campoInvalido('email')){
+                    <p class="erro" role="alert">Informe um e-mail válido!.</p>
+                }
+            </div>
+
+            <div class="campo">
+                <label class="senha1" for="senha">Senha</label>
+                <input 
+                id="senha"
+                type="password"
+                formControlName="senha"
+                placeholder="Senha"
+                autocomplete="current-password"
+                />
+                @if (campoInvalido('senha')) {
+                    <p class="erro" role="alert">Informe sua senha.</p>
+                }
+            </div >
+
+            <button class="butao_escuro" type="submit"> Acessar Conta</button>
+            <a class="esqueceu_senha">Esqueceu sua senha ?</a>
+        </form>
+
+        <div class="divisor">
+            <hr>
+            <span>OU</span>
+            <hr>
+        </div>
+
+        <div class="sociais">
+            <button class="social" type="button" aria-label="Entrar com Google">
+                <img src="/overhub/public/icons/Google.svg" alt="icon Google" width="55" height="50">
+            </button>
+            <button class="social" type="button" aria-label="Entrar com Github">
+                <img src="/overhub/public/icons/GitHUb.svg" alt="icon Github" width="55" height="50">
+            </button>
+            <button class="social" type="button" aria-label="Entrar com Linkedin">
+                <img src="/overhub/public/icons/Linkedin.svg" alt="icon Linkedin" width="55" height="50">
+            </button>
+        </div>
+     </section>
+
+     <!--Bloco 2 botao cadastro-->
+
+     <section class="cartao cartao-cadastro">
+        <img src="/overhub/public/icons/user_icon.svg" alt="icon_user" width="80" height="79">
+        <p class="texto-cadastro">
+            Cire sua conta e aproveite todos os benefícios de ser cliente da OverHub
+        </p>
+        <a class="botao-cadastro-laranja" routerLink="/cadastro"> CRIAR CONTA</a> <!--precisa colocar o caminho até o cadastro-->
+     </section>
+</main>
