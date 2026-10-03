@@ -1,0 +1,205 @@
+/* A tag <app-login> vira um bloco que ocupa o espaço entre header e footer */
+:host {
+    display: block;
+    flex: 1;
+}
+
+/* ---------- Página: os dois cartões lado a lado ---------- */
+.pagina {
+    display: flex;
+    flex-wrap: wrap;
+    /* se não couber, o segundo cartão desce */
+    justify-content: center;
+    gap: 36px;
+    max-width: 1738px;
+    /* em telas gigantes, o conteúdo não se espalha */
+    margin-inline: auto;
+    padding: clamp(32px, 7vw, 100px) 16px 60px;
+}
+
+/* ---------- Cartão (base dos dois) ---------- */
+.cartao {
+    background: var(--cor-cartao, #27282f);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+}
+
+.cartao-login {
+    width: 597px;
+    max-width: 100%;
+    /* nunca passa da largura da tela */
+    padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 31px);
+}
+
+.cartao-cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 453px;
+    max-width: 100%;
+    padding: 40px clamp(20px, 5vw, 30px);
+}
+
+/* ---------- Título ---------- */
+.titulo {
+    margin: 0 0 clamp(24px, 4vw, 40px);
+    font-size: clamp(24px, 5vw, 30px);
+    text-align: center;
+}
+
+.destaque {
+    color: var(--cor-laranja-claro, #ff7900);
+}
+
+/* ---------- Texto escondido (só leitor de tela lê) ----------
+   Serve para o label "E-mail" (sr-only) e para o label "Senha" (senha1) */
+.sr-only,
+.senha1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- Campos ---------- */
+.campo {
+    margin-bottom: 30px;
+}
+
+.campo input {
+    width: 100%;
+    height: clamp(56px, 8vw, 70px);
+    padding: 0 clamp(16px, 3vw, 26px);
+    background: rgba(217, 217, 217, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: var(--raio-campo, 9px);
+    color: var(--cor-texto, #ffffff);
+    font: 700 clamp(18px, 3vw, 22px) var(--fonte, 'Kode Mono', monospace);
+}
+
+.campo input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.erro {
+    margin: 6px 0 0;
+    color: #ff8a8a;
+    font-size: 14px;
+}
+
+/* ---------- Botões: parte que os dois têm em comum ---------- */
+.butao_escuro,
+.botao-cadastro-laranja {
+    display: block;
+    color: var(--cor-texto, #ffffff);
+    font-family: var(--fonte, 'Kode Mono', monospace);
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.butao_escuro:hover,
+.botao-cadastro-laranja:hover {
+    filter: brightness(1.15);
+}
+
+/* ---------- Botão "Acessar Conta" ---------- */
+.butao_escuro {
+    width: 100%;
+    height: clamp(56px, 8vw, 65px);
+    background: var(--cor-botao-escuro, #1a005b);
+    border: 1px solid var(--cor-laranja, #ff6200);
+    border-radius: var(--raio-campo, 9px);
+    font-size: clamp(20px, 3.2vw, 24px);
+}
+
+/* ---------- Esqueceu a senha ---------- */
+.esqueceu_senha {
+    display: block;
+    margin-top: 12px;
+    color: var(--cor-link, #cc7629);
+    font-size: 15px;
+    text-align: right;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.esqueceu_senha:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Divisor "OU" ---------- */
+.divisor {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: clamp(28px, 5vw, 40px) 0;
+    font-size: clamp(20px, 3vw, 25px);
+}
+
+.divisor hr {
+    flex: 1;
+    /* cada linha ocupa o espaço que sobra */
+    border: 0;
+    border-top: 1px solid rgba(255, 121, 0, 0.5);
+}
+
+/* ---------- Login social ---------- */
+.sociais {
+    display: flex;
+    flex-wrap: wrap;
+    /* em tela muito estreita, o último ícone desce em vez de vazar */
+    justify-content: center;
+    gap: 20px clamp(24px, 6vw, 67px);
+}
+
+.social {
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.social:hover {
+    opacity: 0.8;
+}
+
+/* ---------- Cartão de cadastro ---------- */
+.texto-cadastro {
+    max-width: 300px;
+    margin: 16px 0 14px;
+    font-size: 15px;
+}
+
+.botao-cadastro-laranja {
+    width: 333px;
+    max-width: 100%;
+    padding: 15px 0;
+    background: var(--cor-laranja, #ff6200);
+    border-radius: 10px;
+    font-size: clamp(18px, 3vw, 22px);
+}
+
+/* ---------- Foco do teclado ---------- */
+input:focus-visible,
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--cor-laranja-claro, #ff7900);
+    outline-offset: 3px;
+}
+
+/* ---------- Quando os cartões ficam um embaixo do outro ---------- */
+/* 597 + 36 + 453 + 32 de margem = ~1118px: abaixo disso eles quebram de linha.
+   Aí deixamos os dois com a mesma largura, para ficar alinhado. */
+@media (max-width: 1120px) {
+    .cartao-cadastro {
+        width: 597px;
+    }
+}
