@@ -98,3 +98,71 @@ input:focus {
     border-color: #32009e;
     outline: none;
 }
+
+.card-demanda {
+    background-color: #FAF9F6; 
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 5px solid #FF9332; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.demanda-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.id-tarefa {
+    font-weight: bold;
+    color: #32009e; 
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-pendente {
+    background-color: #fff3cd; 
+    color: #856404;         
+}
+
+
+.demanda-titulo {
+    color: #040019; 
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.demanda-descricao {
+    color: #555;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4; 
+}
+
+.btn-acao-demanda {
+    align-self: flex-end; 
+    background-color: #32009e; 
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-acao-demanda:hover {
+    background-color: #FF9332; 
+}
