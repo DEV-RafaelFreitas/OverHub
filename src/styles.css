@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+
+  /*sistema de cores*/
+  --color-primary: #FF9332;
+  --color-secondary: #1A005B;
+
+  /*propriedades padrão dos modais*/
+  --modal-bg-color: #FFF;
+
+  --modal-border-width: 3px;
+  --modal-border-style: solid;
+  --modal-border-color: var(--color-primary);
+
+  --z-index-modal: 100;
+
+  /*valor padrão para border-radius*/
+  --default-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*estilo padrão modais*/
+.modal-header {
+  display: flex;
+  align-items: center;
+}
+
+.modal-header h2,
+.modal-header i {
+  font-size: 2rem;
+}
+
+.modal-header h2 {
+  color: var(--color-secondary, darkblue);
+}
+
+/*FIM modais*/
