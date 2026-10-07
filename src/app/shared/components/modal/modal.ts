@@ -10,4 +10,6 @@ export class Modal {
 
   //propriedade configurável
   hasHeaderBorder = input<boolean>(true);
+
+  maxWidth = input<string>('800px');
 }

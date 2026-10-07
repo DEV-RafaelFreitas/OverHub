@@ -3,6 +3,7 @@
   /*sistema de cores*/
   --color-primary: #FF9332;
   --color-secondary: #1A005B;
+  --color-text: #25416D;
 
   /*propriedades padrão dos modais*/
   --modal-bg-color: #FFF;
@@ -21,6 +22,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
 }
 
 /*estilo padrão modais*/

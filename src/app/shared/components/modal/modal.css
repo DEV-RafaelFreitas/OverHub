@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .modal.disable-bg {
   background-color: black;
   opacity: .8;
@@ -16,8 +20,7 @@
 .modal-container {
   margin: 0 8px;
   padding: 40px;
-
-  max-width: 800px;
+  width: 100%;
 
   background-color: var(--modal-bg-color, white);
 
