@@ -9,16 +9,16 @@
                 <input id="email" 
                     type="email" 
                     formControlName="email"
-                    placeholder="Em-mail" 
+                    placeholder="E-mail" 
                     autocomplete="email"
                 />
                 @if (campoInvalido('email')){
-                    <p class="erro" role="alert">Informe um e-mail válido!.</p>
+                    <p class="erro" role="alert">Informe um e-mail válido!</p>
                 }
             </div>
 
             <div class="campo">
-                <label class="senha1" for="senha">Senha</label>
+                <label class="sr-only" for="senha">Senha</label>
                 <input 
                 id="senha"
                 type="password"
@@ -31,7 +31,7 @@
                 }
             </div >
 
-            <button class="butao_escuro" type="submit"> Acessar Conta</button>
+            <button class="botao_escuro" type="submit">Login</button>
             <a class="esqueceu_senha">Esqueceu sua senha ?</a>
         </form>
 
@@ -59,7 +59,7 @@
      <section class="cartao cartao-cadastro">
         <img src="icons/user_icon.svg" alt="icon_user" width="80" height="79">
         <p class="texto-cadastro">
-            Cire sua conta e aproveite todos os benefícios de ser cliente da OverHub
+            Crie sua conta e aproveite todos os benefícios de ser cliente da OverHub
         </p>
         <a class="botao-cadastro-laranja" routerLink="/cadastro"> CRIAR CONTA</a> <!--precisa colocar o caminho até o cadastro-->
      </section>

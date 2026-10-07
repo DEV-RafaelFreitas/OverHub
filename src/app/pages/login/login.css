@@ -54,17 +54,8 @@
 
 /* ---------- Texto escondido (só leitor de tela lê) ----------
    Serve para o label "E-mail" (sr-only) e para o label "Senha" (senha1) */
-.sr-only,
-.senha1 {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+.sr-only{
+    display: none;
 }
 
 /* ---------- Campos ---------- */
@@ -94,7 +85,7 @@
 }
 
 /* ---------- Botões: parte que os dois têm em comum ---------- */
-.butao_escuro,
+.botao_escuro,
 .botao-cadastro-laranja {
     display: block;
     color: var(--cor-texto, #ffffff);
@@ -105,13 +96,13 @@
     cursor: pointer;
 }
 
-.butao_escuro:hover,
+.botao_escuro:hover,
 .botao-cadastro-laranja:hover {
     filter: brightness(1.15);
 }
 
 /* ---------- Botão "Acessar Conta" ---------- */
-.butao_escuro {
+.botao_escuro {
     width: 100%;
     height: clamp(56px, 8vw, 65px);
     background: var(--cor-botao-escuro, #1a005b);
