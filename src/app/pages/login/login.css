@@ -1,3 +1,7 @@
+* {
+    font-family: var(--fonte, 'Kode Mono', monospace);
+}
+
 /* A tag <app-login> vira um bloco que ocupa o espaço entre header e footer */
 :host {
     display: block;
@@ -64,6 +68,7 @@
 }
 
 .campo input {
+    box-sizing: border-box;
     width: 100%;
     height: clamp(56px, 8vw, 70px);
     padding: 0 clamp(16px, 3vw, 26px);
