@@ -1,0 +1,8 @@
+/* Força o navegador inteiro a adotar o seu fundo escuro e sumir com as laterais brancas */
+html, body {
+    background-color: #040019;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+}

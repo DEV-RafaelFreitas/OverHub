@@ -1,0 +1,100 @@
+.perfil-header {
+    text-align: left;
+    color: white;
+    background-color: #040019;
+    padding: 20px;
+    justify-content: center;
+}
+
+.perfil-container {
+    display: grid;
+    grid-template-columns: 250px minmax(300px, 700px);
+    gap: 40px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    align-items: start;
+    background-color: #040019;
+    min-height: 100vh;
+    justify-content: center;
+
+}
+
+.card-menu-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #FAF9F6;
+    padding: 30px 30px 10px 30px;
+    border-radius: 12px;
+    border: 1px solid #FF9332;
+}
+
+.btn-menu {
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    color: #32009e;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.card-dados {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.btn-menu:hover {
+    background-color: #FF9332;
+    color: WHITE;
+}
+
+.container {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #FF9332;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 20px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+}
+
+h2,
+h3,
+h4 {
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.5rem;
+    color: #FF9332;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+h4 {
+    grid-column: 1 / -1;
+    max-width: 600px;
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #32009e;
+    outline: none;
+}
