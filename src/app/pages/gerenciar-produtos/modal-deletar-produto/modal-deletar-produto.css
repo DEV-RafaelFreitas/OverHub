@@ -1,3 +1,7 @@
+:host {
+  --modal-max-width: 800px;
+}
+
 .modal-header {
   justify-content: space-between;
 }
