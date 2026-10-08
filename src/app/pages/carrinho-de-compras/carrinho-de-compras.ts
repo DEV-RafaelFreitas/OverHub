@@ -8,3 +8,4 @@ import { Carrinho } from '../../models/carrinho';
   templateUrl: './carrinho-de-compras.html',
 })
 export class CarrinhoDeCompras {}
+
