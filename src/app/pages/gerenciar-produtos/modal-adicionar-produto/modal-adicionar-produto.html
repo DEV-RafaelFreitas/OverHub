@@ -1,7 +1,7 @@
 <app-modal maxWidth="80vw">
   <div class="modal-header">
     <h2>Adicionar Produto</h2>
-    <button>
+    <button (click)="onCancel()">
       <i class="material-icons">close</i>
     </button>
   </div>
@@ -34,7 +34,7 @@
   </form>
 
   <div class="modal-actions">
-    <button class="cancel">Voltar</button>
-    <button class="confirm">Adicionar</button>
+    <button class="cancel" (click)="onCancel()">Voltar</button>
+    <button class="confirm" (click)="onAdd()">Adicionar</button>
   </div>
 </app-modal>

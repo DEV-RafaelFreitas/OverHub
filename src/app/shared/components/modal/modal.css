@@ -3,13 +3,14 @@
 }
 
 .modal.disable-bg {
-  background-color: black;
-  opacity: .8;
+  background-color: rgba(0,0,0,.8);
 
   width: 100vw;
   height: 100vh;
 
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: var(--z-index-modal, 100);
 
   display: flex;

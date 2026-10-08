@@ -1,11 +1,13 @@
 :root {
 
-  /*sistema de cores*/
+  /* Sistema de cores */
   --color-primary: #FF9332;
   --color-secondary: #1A005B;
   --color-text: #25416D;
+  --color-page-background: #01010D;
+  --color-danger: #c41316;
 
-  /*propriedades padrão dos modais*/
+  /* Propriedades padrão dos modais */
   --modal-bg-color: #FFF;
 
   --modal-border-width: 3px;
@@ -14,7 +16,7 @@
 
   --z-index-modal: 100;
 
-  /*valor padrão para border-radius*/
+  /* Valor padrão para border-radius */
   --default-radius: 8px;
 }
 
@@ -24,8 +26,16 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--color-page-background, black);
+}
+
 button {
   cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
 }
 
 /* Estilo padrão modais */
@@ -52,14 +62,12 @@ button {
   height: 1px;
   padding: 0;
   margin: -1px;
-  
+
   /* esconde a visualização: */
   clip: rect(0, 0, 0, 0);     /* Suporte a navegadores legados */
   overflow: hidden;           /* Suporte a navegadores legados */
   clip-path: inset(50%);      /* Versão moderna */
-  
+
   white-space: nowrap;      /* Impede que o leitor de tela soletre letra por letra pelo width de 1px */
 }
 /* FIM Screen-reader */
-
-

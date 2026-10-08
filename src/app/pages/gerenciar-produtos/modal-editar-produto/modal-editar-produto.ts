@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { Modal } from '@shared/components/modal/modal';
 
 @Component({
@@ -7,4 +7,16 @@ import { Modal } from '@shared/components/modal/modal';
   styleUrl: './modal-editar-produto.css',
   templateUrl: './modal-editar-produto.html',
 })
-export class ModalEditarProduto {}
+export class ModalEditarProduto {
+  
+  cancel = output<void>();
+  update = output<void>();
+
+  onCancel() {
+    this.cancel.emit();
+  }
+
+  onSave() {
+    this.update.emit();
+  }
+}

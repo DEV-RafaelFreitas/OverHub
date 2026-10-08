@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { Modal } from '@shared/components/modal/modal';
 
 @Component({
@@ -7,4 +7,15 @@ import { Modal } from '@shared/components/modal/modal';
   styleUrl: './modal-deletar-produto.css',
   templateUrl: './modal-deletar-produto.html',
 })
-export class ModalDeletarProduto {}
+export class ModalDeletarProduto {
+  cancel = output<void>();
+  confirm = output<void>();
+
+  onDelete() {
+    this.confirm.emit();
+  }
+
+  onCancel() {
+    this.cancel.emit();
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { Modal } from '@shared/components/modal/modal';
 
 @Component({
@@ -7,4 +7,15 @@ import { Modal } from '@shared/components/modal/modal';
   styleUrl: './modal-adicionar-produto.css',
   templateUrl: './modal-adicionar-produto.html',
 })
-export class ModalAdicionarProduto {}
+export class ModalAdicionarProduto {
+  cancel = output<void>();
+  add = output<void>();
+  
+  onAdd() {
+    this.add.emit();
+  }
+
+  onCancel() {
+    this.cancel.emit();
+  }
+}

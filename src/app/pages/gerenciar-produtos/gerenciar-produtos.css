@@ -1,0 +1,107 @@
+.management-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 3vh auto;
+}
+
+.layout-card {
+  background-color: white;
+  width: 100%;
+  
+  margin: 0 8px;
+  padding: 40px;
+  width: 100%;
+
+  background-color: var(--modal-bg-color, white);
+
+  border-radius: var(--default-radius, 0);
+  border-width: var(--modal-border-width, 0);
+  border-style: var(--modal-border-style, solid);
+  border-color: var(--modal-border-color, transparent);
+}
+
+.modal-header {
+  justify-content: space-between;
+  border-bottom: 2px solid var(--modal-border-color, white);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.modal-header i {
+  color: var(--color-secondary, darkblue);
+}
+
+.add-btn {
+  cursor: pointer;
+  padding: 16px;
+
+  min-width: 200px;
+
+  font-size: 1.3rem;
+  font-weight: 600;
+
+  border-radius: var(--default-radius, 0);
+}
+
+.add-btn {
+  background-color: var(--color-primary, green);
+  border-color: var(--color-primary, green);
+
+  color: white;
+}
+
+/* TABELA DE PRODUTOS */
+.prod-table {
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+}
+.prod-table thead {
+  background-color: var(--color-secondary);
+  color: white;
+  font-size: 1.2em;
+}
+
+.prod-table thead th {
+  padding: 24px;
+  border: none;
+}
+
+.prod-table tbody {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.prod-table tr {
+  border-bottom: 1px solid black;
+}
+
+.prod-table td {
+  padding: 8px 0;
+}
+
+.prod-table .actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.prod-table .actions button{
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.prod-table .actions button i{
+  font-size: 3rem
+}
+
+.prod-table .actions .edit-btn i{
+  color: var(--color-primary, #000);
+}
+
+.prod-table .actions .delete-btn i{
+  color: var(--color-danger, red);
+}
+/* FIM TABELA */

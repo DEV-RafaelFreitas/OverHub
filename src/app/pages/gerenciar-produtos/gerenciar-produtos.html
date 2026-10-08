@@ -1,1 +1,134 @@
-<modal-editar-produto></modal-editar-produto>
+<main class="management-container">
+
+  <div class="layout-card">
+    <header class="modal-header">
+      <h2>Gerenciar Produtos</h2>
+      <button class="add-btn" (click)="openAddModal()">Adicionar</button>
+    </header>
+
+    <table class="prod-table">
+      <caption class="sr-only">Listagem dos Produtos</caption>
+
+      <thead>
+        <tr>
+          <th scope="col">Código do Produto</th>
+          <th scope="col">Imagem</th>
+          <th scope="col">Nome do Produto</th>
+          <th scope="col">Quantidade em Estoque</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>00123</td>
+          <td>
+            <!-- imagem do produto -->
+            <img
+              src="https://www.kingstonstore.com.br/cdn/shop/products/DDR4FBK11_f80e115e-f13c-487b-bb82-ffa562b9ef2b.jpg?v=1627418620&width=1946"
+              alt="Foto do produto" width="90%">
+          </td>
+          <td>
+            Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16
+          </td>
+          <td>
+            <!-- estoque -->
+            16
+          </td>
+          <td>
+            <!-- preço -->
+            R$ 811,75
+          </td>
+          <td>
+            <!-- Botões -->
+            <div class="actions">
+              <button class="edit-btn" aria-label="Editar o produto Memória RAM Kingston" (click)="openEditModal()">
+                <i class="material-icons" aria-hidden="true">edit_square</i>
+              </button>
+              <button class="delete-btn" aria-label="Excluir o produto Memória RAM Kingston" (click)="openDeleteModal()">
+                <i class="material-icons" aria-hidden="true">cancel</i>
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>00123</td>
+          <td>
+            <!-- imagem do produto -->
+            <img
+              src="https://www.kingstonstore.com.br/cdn/shop/products/DDR4FBK11_f80e115e-f13c-487b-bb82-ffa562b9ef2b.jpg?v=1627418620&width=1946"
+              alt="Foto do produto" width="90%">
+          </td>
+          <td>
+            <!-- Nome do produto-->
+            Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16
+          </td>
+          <td>
+            <!-- estoque -->
+            16
+          </td>
+          <td>
+            <!-- preço -->
+            R$ 811,75
+          </td>
+          <td>
+            <!-- Botões -->
+            <div class="actions">
+              <button class="edit-btn" aria-label="Editar o produto Memória RAM Kingston" (click)="openEditModal()">
+                <i class="material-icons" aria-hidden="true">edit_square</i>
+              </button>
+              <button class="delete-btn" aria-label="Excluir o produto Memória RAM Kingston" (click)="openDeleteModal()">
+                <i class="material-icons" aria-hidden="true">cancel</i>
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>00123</td>
+          <td>
+            <!-- imagem do produto -->
+            <img
+              src="https://www.kingstonstore.com.br/cdn/shop/products/DDR4FBK11_f80e115e-f13c-487b-bb82-ffa562b9ef2b.jpg?v=1627418620&width=1946"
+              alt="Foto do produto" width="90%">
+          </td>
+          <td>
+            <!-- Nome do produto-->
+            Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16
+          </td>
+          <td>
+            <!-- estoque -->
+            16
+          </td>
+          <td>
+            <!-- preço -->
+            R$ 811,75
+          </td>
+          <td>
+            <!-- Botões -->
+            <div class="actions">
+              <button class="edit-btn" aria-label="Editar o produto Memória RAM Kingston" (click)="openEditModal()">
+                <i class="material-icons" aria-hidden="true">edit_square</i>
+              </button>
+              <button class="delete-btn" aria-label="Excluir o produto Memória RAM Kingston" (click)="openDeleteModal()">
+                <i class="material-icons" aria-hidden="true">cancel</i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<!-- MODAIS-->
+@if(modalAtivo === 'deletar') {
+<modal-deletar-produto (cancel)="closeModal()" />
+}
+@if(modalAtivo === 'adicionar') {
+  <modal-adicionar-produto (cancel)="closeModal()" (add)="closeModal()"/>
+}
+@if(modalAtivo === 'editar') {
+  <modal-editar-produto (cancel)="closeModal()" (update)="closeModal()"/>
+}
