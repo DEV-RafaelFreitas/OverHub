@@ -28,7 +28,7 @@ button {
   cursor: pointer;
 }
 
-/*estilo padrão modais*/
+/* Estilo padrão modais */
 .modal-header {
   display: flex;
   align-items: center;
@@ -44,3 +44,22 @@ button {
 }
 
 /*FIM modais*/
+
+/* ---------- Texto escondido (só leitor de tela lê) ---------- */
+.sr-only {  /* Screen-reader only */
+  position: absolute;     /* tira do fluxo normal */
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  
+  /* esconde a visualização: */
+  clip: rect(0, 0, 0, 0);     /* Suporte a navegadores legados */
+  overflow: hidden;           /* Suporte a navegadores legados */
+  clip-path: inset(50%);      /* Versão moderna */
+  
+  white-space: nowrap;      /* Impede que o leitor de tela soletre letra por letra pelo width de 1px */
+}
+/* FIM Screen-reader */
+
+
