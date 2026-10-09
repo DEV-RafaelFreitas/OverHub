@@ -16,8 +16,8 @@ const USUARIOS_TESTES: UsuarioTeste[] =[
   { email: 'cliente@gmail.com', senha: '123456', perfil: 'cliente' },
 ];
 const ROTA_POR_PERFIL: Record<Perfil, string> = {
-  admin: '/perfiadmin',
-  cliente: '/perfiluser',
+  admin: '/perfil-admin',
+  cliente: '/perfil-user',
 } //precisa definir a rota ate a manutencao de produtos e perfil do user
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
@@ -47,7 +47,7 @@ export class Login {
 
 
     protected entrar(): void{
-
+		debugger;
 
         if(this.form.invalid){
           this.form.markAllAsTouched();
