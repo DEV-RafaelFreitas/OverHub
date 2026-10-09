@@ -1,0 +1,36 @@
+name: Deploy Angular to GitHub Pages
+
+on:
+  push:
+    branches: [ test/deploy ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Verify versions
+        run: |
+          node -v
+          npm -v
+
+      - name: Install Dependencies
+        run: npm ci
+      
+      - name: Build
+        run: npx ng build --configuration production --base-href /overhub
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/overhub/browser
