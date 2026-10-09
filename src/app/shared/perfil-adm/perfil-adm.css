@@ -1,3 +1,4 @@
+
 .perfil-header {
     text-align: left;
     color: white;
@@ -17,7 +18,7 @@
     background-color: #040019;
     min-height: 100vh;
     justify-content: center;
-
+    color: black;
 }
 
 .card-menu-lateral {

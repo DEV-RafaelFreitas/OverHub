@@ -14,7 +14,7 @@ app-modal p {
   font-size: 1.5rem;
   text-align: center;
   font-weight: 600;
-  /* color: #25416D; */
+  color: black;
 }
 
 .modal-actions {
