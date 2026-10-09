@@ -47,7 +47,6 @@ export class Login {
 
 
     protected entrar(): void{
-		debugger;
 
         if(this.form.invalid){
           this.form.markAllAsTouched();
