@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { HeaderComponent } from './header/header';
 import { RouterOutlet } from '@angular/router';
-import { Footer } from './shared/footer/footer';
 import { PerfilAdm } from './shared/perfil-adm/perfil-adm';
+import { PerfilUser } from './shared/perfil-user/perfil-user';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Footer,PerfilAdm],
+  imports: [RouterOutlet, PerfilAdm, PerfilUser, HeaderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
+
 export class App {
   title = 'OverHub';
 }
