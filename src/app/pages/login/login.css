@@ -56,12 +56,6 @@
     color: var(--cor-laranja-claro, #ff7900);
 }
 
-/* ---------- Texto escondido (só leitor de tela lê) ----------
-   Serve para o label "E-mail" (sr-only) e para o label "Senha" (senha1) */
-.sr-only{
-    display: none;
-}
-
 /* ---------- Campos ---------- */
 .campo {
     margin-bottom: 30px;

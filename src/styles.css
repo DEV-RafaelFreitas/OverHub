@@ -1,5 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+
+  /* Sistema de cores */
+  --color-primary: #FF9332;
+  --color-secondary: #1A005B;
+  --color-text: #25416D;
+  --color-page-background: #01010D;
+  --color-danger: #c41316;
+
+  /* Propriedades padrão dos modais */
+  --modal-bg-color: #FFF;
+
+  --modal-border-width: 3px;
+  --modal-border-style: solid;
+  --modal-border-color: var(--color-primary);
+
+  --z-index-modal: 100;
+
+  /* Valor padrão para border-radius */
+  --default-radius: 8px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +29,50 @@
 }
 
 body {
-  background-color: #01010d;
+  background-color: var(--color-page-background, black);
   color: #fffefe;
   font-family: 'Poppins', 'Kode Mono', monospace, sans-serif;
   min-height: 100vh;
 }
+
+button {
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Estilo padrão modais */
+.modal-header {
+  display: flex;
+  align-items: center;
+}
+
+.modal-header h2,
+.modal-header i {
+  font-size: 2rem;
+}
+
+.modal-header h2 {
+  color: var(--color-secondary, darkblue);
+}
+
+/*FIM modais*/
+
+/* ---------- Texto escondido (só leitor de tela lê) ---------- */
+.sr-only {  /* Screen-reader only */
+  position: absolute;     /* tira do fluxo normal */
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+
+  /* esconde a visualização: */
+  clip: rect(0, 0, 0, 0);     /* Suporte a navegadores legados */
+  overflow: hidden;           /* Suporte a navegadores legados */
+  clip-path: inset(50%);      /* Versão moderna */
+
+  white-space: nowrap;      /* Impede que o leitor de tela soletre letra por letra pelo width de 1px */
+}
+/* FIM Screen-reader */
