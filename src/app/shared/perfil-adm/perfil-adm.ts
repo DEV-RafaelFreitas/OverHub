@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [CommonModule, FormsModule],
@@ -8,9 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './perfil-adm.css',
   templateUrl: './perfil-adm.html',
 })
-
-
 export class PerfilAdm {
+  private router = inject(Router);
+
   admin = {
     nome: 'Administrador Exemplo',
     email: 'admin@example.com',
@@ -18,28 +19,17 @@ export class PerfilAdm {
     telefone: '(11) 1234-5678'
   };
 
-  novaSenha() {
-    // Fica vazio por enquanto
-  };
+  novaSenha() {};
 
-  excluirConta() {
-    // Fica vazio por enquanto
-  };
+  excluirConta() {};
 
-  logout() {
-    // Fica vazio por enquanto
-  };
+  logout() {};
 
   gerenciarProdutos() {
-    // Fica vazio por enquanto
-  };
-
-  gerenciarUsuarios() {
-    // Fica vazio por enquanto
+    this.router.navigate(['/gerenciar-produtos']);
   }
 
-  verificarPedidos() {
-    // Fica vazio por enquanto
-  };
+  gerenciarUsuarios() {}
 
+  verificarPedidos() {};
 }

@@ -22,8 +22,8 @@ const ROTA_POR_PERFIL: Record<Perfil, string> = {
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
   selector: 'app-login',
-  styleUrl: './login.css',
-  templateUrl: './login.html',
+  styleUrl:'./login.css',
+  templateUrl:'./login.html',
 })
 
 export class Login {

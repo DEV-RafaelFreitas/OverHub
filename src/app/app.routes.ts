@@ -11,7 +11,7 @@ export const routes: Routes = [
   { 
     path: '', 
     component: Home,
-	  title: 'Página inicial'
+    title: 'Página inicial'
   },
   {
     path: 'login', 
@@ -35,14 +35,17 @@ export const routes: Routes = [
   },
   {
     path: 'perfil-user',
-	  component: PerfilUser,
+    component: PerfilUser,
     title: 'Perfil Cliente'
   },
   {
     path: 'gerenciar-produtos',
     component: GerenciarProdutos,
     title: 'Gerenciar Produtos'
+  },
+  {
+    path: 'produtos',
+    redirectTo: 'gerenciar-produtos',
+    pathMatch: 'full'
   }
 ];
-
-

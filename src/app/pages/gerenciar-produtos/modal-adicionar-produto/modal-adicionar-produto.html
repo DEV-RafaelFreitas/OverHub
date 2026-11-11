@@ -1,40 +1,41 @@
 <app-modal maxWidth="80vw">
   <div class="modal-header">
     <h2>Adicionar Produto</h2>
-    <button (click)="onCancel()">
+    <button (click)="onCancel()" type="button" aria-label="Fechar">
       <i class="material-icons">close</i>
     </button>
   </div>
 
-  <form class="modal-content">
-
+  <form class="modal-content" (ngSubmit)="onAdd()">
     <div class="form-grid">
       <div class="left-col">
         <label for="product-name-id" class="sr-only">Nome do Produto</label>
-        <input id="product-name-id" type="text" placeholder="Nome">
+        <input id="product-name-id" type="text" [(ngModel)]="nome" name="nome" placeholder="Nome do Produto" required>
 
         <label for="product-price-id" class="sr-only">Preço do Produto</label>
-        <input id="product-price-id" type="text" placeholder="Preço">
+        <input id="product-price-id" type="number" step="0.01" [(ngModel)]="preco" name="preco" placeholder="Preço (Ex: 199.90)" required>
 
         <label for="product-stock-id" class="sr-only">Quantidade em estoque do Produto</label>
-        <input id="product-stock-id" type="text" placeholder="Estoque">
+        <input id="product-stock-id" type="number" [(ngModel)]="estoque" name="estoque" placeholder="Estoque (Ex: 10)" required>
 
+        <label for="product-category-id" class="sr-only">Categoria</label>
+        <input id="product-category-id" type="text" [(ngModel)]="categoria" name="categoria" placeholder="Categoria (Ex: Periféricos)">
       </div>
 
       <div class="right-col">
         <label for="product-picture-id" class="sr-only">Fazer upload de foto do Produto</label>
-        <img class="prod-pic" src="https://static.thenounproject.com/png/5191452-200.png" alt="Foto do produto">
-        <input id="product-picture-id" type="file">
-
+        <img class="prod-pic" [src]="imagem" alt="Foto do produto">
+        <input id="product-picture-id" type="file" accept="image/*" (change)="onFileSelected($event)">
+        <input type="text" [(ngModel)]="imagem" name="imagem" placeholder="Ou cole a URL da imagem" style="font-size: 0.8rem; margin-top: 4px;">
       </div>
     </div>
 
     <label for="product-desc-id" class="sr-only">Descrição do Produto</label>
-    <textarea id="product-desc-id" placeholder="Insira a descrição do produto..." cols="30" rows="10"></textarea>
-  </form>
+    <textarea id="product-desc-id" [(ngModel)]="descricao" name="descricao" placeholder="Insira a descrição do produto..." cols="30" rows="6"></textarea>
 
-  <div class="modal-actions">
-    <button class="cancel" (click)="onCancel()">Voltar</button>
-    <button class="confirm" (click)="onAdd()">Adicionar</button>
-  </div>
+    <div class="modal-actions">
+      <button type="button" class="cancel" (click)="onCancel()">Voltar</button>
+      <button type="submit" class="confirm">Adicionar</button>
+    </div>
+  </form>
 </app-modal>

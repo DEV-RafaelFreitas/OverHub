@@ -6,12 +6,18 @@
       <button class="add-btn" (click)="openAddModal()">Adicionar</button>
     </header>
 
+    @if (mensagem) {
+      <div style="background-color: #ffebee; color: #c62828; padding: 12px; margin-bottom: 16px; border-radius: 4px;">
+        {{ mensagem }}
+      </div>
+    }
+
     <table class="prod-table">
       <caption class="sr-only">Listagem dos Produtos</caption>
 
       <thead>
         <tr>
-          <th scope="col">Código do Produto</th>
+          <th scope="col">Código</th>
           <th scope="col">Imagem</th>
           <th scope="col">Nome do Produto</th>
           <th scope="col">Quantidade em Estoque</th>
@@ -20,103 +26,46 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>00123</td>
-          <td>
-            <!-- imagem do produto -->
-            <img
-              src="https://www.kingstonstore.com.br/cdn/shop/products/DDR4FBK11_f80e115e-f13c-487b-bb82-ffa562b9ef2b.jpg?v=1627418620&width=1946"
-              alt="Foto do produto" width="90%">
-          </td>
-          <td>
-            Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16
-          </td>
-          <td>
-            <!-- estoque -->
-            16
-          </td>
-          <td>
-            <!-- preço -->
-            R$ 811,75
-          </td>
-          <td>
-            <!-- Botões -->
-            <div class="actions">
-              <button class="edit-btn" aria-label="Editar o produto Memória RAM Kingston" (click)="openEditModal()">
-                <i class="material-icons" aria-hidden="true">edit_square</i>
-              </button>
-              <button class="delete-btn" aria-label="Excluir o produto Memória RAM Kingston" (click)="openDeleteModal()">
-                <i class="material-icons" aria-hidden="true">cancel</i>
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>00123</td>
-          <td>
-            <!-- imagem do produto -->
-            <img
-              src="https://www.kingstonstore.com.br/cdn/shop/products/DDR4FBK11_f80e115e-f13c-487b-bb82-ffa562b9ef2b.jpg?v=1627418620&width=1946"
-              alt="Foto do produto" width="90%">
-          </td>
-          <td>
-            <!-- Nome do produto-->
-            Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16
-          </td>
-          <td>
-            <!-- estoque -->
-            16
-          </td>
-          <td>
-            <!-- preço -->
-            R$ 811,75
-          </td>
-          <td>
-            <!-- Botões -->
-            <div class="actions">
-              <button class="edit-btn" aria-label="Editar o produto Memória RAM Kingston" (click)="openEditModal()">
-                <i class="material-icons" aria-hidden="true">edit_square</i>
-              </button>
-              <button class="delete-btn" aria-label="Excluir o produto Memória RAM Kingston" (click)="openDeleteModal()">
-                <i class="material-icons" aria-hidden="true">cancel</i>
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <td>00123</td>
-          <td>
-            <!-- imagem do produto -->
-            <img
-              src="https://www.kingstonstore.com.br/cdn/shop/products/DDR4FBK11_f80e115e-f13c-487b-bb82-ffa562b9ef2b.jpg?v=1627418620&width=1946"
-              alt="Foto do produto" width="90%">
-          </td>
-          <td>
-            <!-- Nome do produto-->
-            Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16
-          </td>
-          <td>
-            <!-- estoque -->
-            16
-          </td>
-          <td>
-            <!-- preço -->
-            R$ 811,75
-          </td>
-          <td>
-            <!-- Botões -->
-            <div class="actions">
-              <button class="edit-btn" aria-label="Editar o produto Memória RAM Kingston" (click)="openEditModal()">
-                <i class="material-icons" aria-hidden="true">edit_square</i>
-              </button>
-              <button class="delete-btn" aria-label="Excluir o produto Memória RAM Kingston" (click)="openDeleteModal()">
-                <i class="material-icons" aria-hidden="true">cancel</i>
-              </button>
-            </div>
-          </td>
-        </tr>
+        @for (item of produtos; track item.id) {
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>
+              <img
+                [src]="item.imagem || 'https://static.thenounproject.com/png/5191452-200.png'"
+                [alt]="item.nome"
+                style="max-width: 80px; max-height: 80px; object-fit: contain; border-radius: 4px;">
+            </td>
+            <td>
+              {{ item.nome }}
+            </td>
+            <td>
+              {{ item.estoque }}
+            </td>
+            <td>
+              R$ {{ item.preco | number:'1.2-2' }}
+            </td>
+            <td>
+              <div class="actions">
+                <button class="edit-btn" [attr.aria-label]="'Editar o produto ' + item.nome" (click)="openEditModal(item)">
+                  <i class="material-icons" aria-hidden="true">edit_square</i>
+                </button>
+                <button class="delete-btn" [attr.aria-label]="'Excluir o produto ' + item.nome" (click)="openDeleteModal(item)">
+                  <i class="material-icons" aria-hidden="true">cancel</i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" style="padding: 32px; font-size: 1.1rem; color: #666;">
+              @if (carregando) {
+                Carregando produtos do servidor...
+              } @else {
+                Nenhum produto cadastrado no catálogo. Clique em "Adicionar" para cadastrar o primeiro!
+              }
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
@@ -124,11 +73,11 @@
 
 <!-- MODAIS-->
 @if(modalAtivo === 'deletar') {
-<modal-deletar-produto (cancel)="closeModal()" />
+  <modal-deletar-produto [produto]="produtoParaDeletar" (cancel)="closeModal()" (confirm)="onProdutoDeletado()" />
 }
 @if(modalAtivo === 'adicionar') {
-  <modal-adicionar-produto (cancel)="closeModal()" (add)="closeModal()"/>
+  <modal-adicionar-produto (cancel)="closeModal()" (add)="onProdutoAdicionado($event)"/>
 }
 @if(modalAtivo === 'editar') {
-  <modal-editar-produto (cancel)="closeModal()" (update)="closeModal()"/>
+  <modal-editar-produto [produto]="produtoSelecionado" (cancel)="closeModal()" (update)="onProdutoEditado($event)"/>
 }
