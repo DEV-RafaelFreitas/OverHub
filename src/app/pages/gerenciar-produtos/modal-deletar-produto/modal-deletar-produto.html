@@ -5,12 +5,17 @@
   </div>
 
   <p>
-    Tem certeza de que deseja excluir o item? Lembre-se que esta alteração não poderá ser
-    desfeita!
+    Tem certeza de que deseja excluir o item
+    @if (produto()?.nome) {
+      <strong>"{{ produto()?.nome }}"</strong>
+    } @else {
+      este item
+    }?
+    Lembre-se que esta alteração não poderá ser desfeita!
   </p>
 
   <div class="modal-actions">
-    <button class="cancel" (click)="onCancel()">Cancelar</button>
-    <button class="confirm" (click)="onDelete()">Deletar</button>
+    <button class="cancel" (click)="onCancel()" type="button">Cancelar</button>
+    <button class="confirm" (click)="onDelete()" type="button">Deletar</button>
   </div>
 </app-modal>

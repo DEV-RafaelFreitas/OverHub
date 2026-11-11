@@ -1,0 +1,55 @@
+{
+  "produtos": [
+    {
+      "id": "2",
+      "nome": "Teclado Mecânico Gamer RGB Switch Blue",
+      "marca": "Overhub Gaming",
+      "descricao": "Teclado mecânico gamer com iluminação RGB individual e switches azuis táticos.",
+      "categoria": "Periféricos",
+      "preco": 349.9,
+      "estoque": 25,
+      "imagem": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500"
+    },
+    {
+      "id": "3",
+      "nome": "Mouse Gamer Óptico 16000 DPI",
+      "preco": 199.9,
+      "estoque": 10,
+      "marca": "Overhub Gaming",
+      "categoria": "Periféricos",
+      "descricao": "que isso meu filho, calma \n",
+      "imagem": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500"
+    },
+    {
+      "nome": "TEste",
+      "preco": 10,
+      "estoque": 10,
+      "marca": "Overhub",
+      "categoria": "Hardware",
+      "descricao": "teste rapaz",
+      "imagem": "https://static.thenounproject.com/png/5191452-200.png",
+      "id": "52ooYPOFB4A"
+    },
+    {
+      "nome": "Tstdasd",
+      "preco": 2131,
+      "estoque": 123,
+      "marca": "Overhub",
+      "categoria": "Hardware",
+      "descricao": "HAHAHHHAHAHAHHHHHHHHHHHHHHH",
+      "imagem": "https://static.thenounproject.com/png/5191452-200.png",
+      "id": "AUXsJo21jQo"
+    },
+    {
+      "nome": "Tstdasd",
+      "preco": 2131,
+      "estoque": 123,
+      "marca": "Overhub",
+      "categoria": "Hardware",
+      "descricao": "HAHAHHHAHAHAHHHHHHHHHHHHHHH",
+      "imagem": "https://static.thenounproject.com/png/5191452-200.png",
+      "id": "7Yo5QFe4R_k"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
