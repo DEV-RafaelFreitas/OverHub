@@ -1,26 +1,20 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalDeletarProduto } from './modal-deletar-produto/modal-deletar-produto';
-import { ModalAdicionarProduto } from './modal-adicionar-produto/modal-adicionar-produto';
-import { ModalEditarProduto } from './modal-editar-produto/modal-editar-produto';
+import { RouterModule } from '@angular/router';
 import { ProdutoService } from '../../services/produto.service';
 import { Produto } from '@models/produto';
 
-type ModalType = 'editar' | 'deletar' | 'adicionar' | null;
-
 @Component({
-  imports: [CommonModule, ModalDeletarProduto, ModalAdicionarProduto, ModalEditarProduto],
+  imports: [CommonModule, RouterModule],
   selector: 'app-gerenciar-produtos',
   styleUrl: './gerenciar-produtos.css',
   templateUrl: './gerenciar-produtos.html',
 })
 export class GerenciarProdutos implements OnInit {
-  private produtoService = inject(ProdutoService);
+  private service = inject(ProdutoService);
+  private cdr = inject(ChangeDetectorRef);
 
   produtos: Produto[] = [];
-  modalAtivo: ModalType = null;
-  produtoSelecionado: Produto | null = null;
-  produtoParaDeletar: Produto | null = null;
   carregando: boolean = false;
   mensagem: string = '';
 
@@ -30,75 +24,33 @@ export class GerenciarProdutos implements OnInit {
 
   carregarProdutos(): void {
     this.carregando = true;
-    this.produtoService.listarProdutos().subscribe({
+    this.cdr.markForCheck();
+    this.service.listar().subscribe({
       next: (dados) => {
         this.produtos = dados;
         this.carregando = false;
+        this.cdr.markForCheck();
       },
       error: (erro) => {
         console.error('Erro ao listar produtos:', erro);
         this.mensagem = 'Erro ao carregar lista de produtos. Certifique-se de que o json-server está rodando!';
         this.carregando = false;
+        this.cdr.markForCheck();
       }
     });
   }
 
-  openAddModal() {
-    this.modalAtivo = 'adicionar';
-  }
-
-  openEditModal(produto: Produto) {
-    this.produtoSelecionado = { ...produto };
-    this.modalAtivo = 'editar';
-  }
-
-  openDeleteModal(produto: Produto) {
-    this.produtoParaDeletar = produto;
-    this.modalAtivo = 'deletar';
-  }
-
-  closeModal() {
-    this.modalAtivo = null;
-    this.produtoSelecionado = null;
-    this.produtoParaDeletar = null;
-  }
-
-  onProdutoAdicionado(novoProduto: Produto) {
-    this.produtoService.adicionarProduto(novoProduto).subscribe({
-      next: () => {
-        this.carregarProdutos();
-        this.closeModal();
-      },
-      error: (erro) => {
-        console.error('Erro ao adicionar produto:', erro);
-        alert('Erro ao salvar produto no json-server.');
-      }
-    });
-  }
-
-  onProdutoEditado(produtoAtualizado: Produto) {
-    this.produtoService.editarProduto(produtoAtualizado).subscribe({
-      next: () => {
-        this.carregarProdutos();
-        this.closeModal();
-      },
-      error: (erro) => {
-        console.error('Erro ao atualizar produto:', erro);
-        alert('Erro ao atualizar produto no json-server.');
-      }
-    });
-  }
-
-  onProdutoDeletado() {
-    if (this.produtoParaDeletar?.id != null) {
-      this.produtoService.deletarProduto(this.produtoParaDeletar.id).subscribe({
+  excluir(id?: number | string): void {
+    if (id !== undefined && confirm('Deseja realmente excluir o produto?')) {
+      this.service.excluir(id).subscribe({
         next: () => {
-          this.carregarProdutos();
-          this.closeModal();
+          this.produtos = this.produtos.filter(p => p.id !== id);
+          this.cdr.markForCheck();
+          alert('Produto excluído com sucesso!');
         },
         error: (erro) => {
-          console.error('Erro ao deletar produto:', erro);
-          alert('Erro ao excluir produto no json-server.');
+          console.error('Erro ao excluir produto:', erro);
+          alert('Erro ao excluir o produto.');
         }
       });
     }

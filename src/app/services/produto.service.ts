@@ -10,23 +10,23 @@ export class ProdutoService {
   private http = inject(HttpClient);
   private readonly api = 'http://localhost:3000/produtos';
 
-  listarProdutos(): Observable<Produto[]> {
+  listar(): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.api);
   }
 
-  buscarProdutoPorId(produtoId: number | string): Observable<Produto> {
-    return this.http.get<Produto>(`${this.api}/${produtoId}`);
+  buscarPorId(id: number | string): Observable<Produto> {
+    return this.http.get<Produto>(`${this.api}/${id}`);
   }
 
-  adicionarProduto(produto: Produto): Observable<Produto> {
+  incluir(produto: Produto): Observable<Produto> {
     return this.http.post<Produto>(this.api, produto);
   }
 
-  editarProduto(produto: Produto): Observable<Produto> {
+  editar(produto: Produto): Observable<Produto> {
     return this.http.put<Produto>(`${this.api}/${produto.id}`, produto);
   }
 
-  deletarProduto(produtoId: number | string): Observable<void> {
-    return this.http.delete<void>(`${this.api}/${produtoId}`);
+  excluir(id: number | string): Observable<void> {
+    return this.http.delete<void>(`${this.api}/${id}`);
   }
 }

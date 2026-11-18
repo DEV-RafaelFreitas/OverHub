@@ -3,7 +3,7 @@
   <div class="layout-card">
     <header class="modal-header">
       <h2>Gerenciar Produtos</h2>
-      <button class="add-btn" (click)="openAddModal()">Adicionar</button>
+      <button class="add-btn" routerLink="/produto-cadastro" type="button">+ Novo Produto</button>
     </header>
 
     @if (mensagem) {
@@ -46,10 +46,18 @@
             </td>
             <td>
               <div class="actions">
-                <button class="edit-btn" [attr.aria-label]="'Editar o produto ' + item.nome" (click)="openEditModal(item)">
+                <button
+                  class="edit-btn"
+                  [attr.aria-label]="'Editar o produto ' + item.nome"
+                  [routerLink]="['/produto-editar', item.id]"
+                  type="button">
                   <i class="material-icons" aria-hidden="true">edit_square</i>
                 </button>
-                <button class="delete-btn" [attr.aria-label]="'Excluir o produto ' + item.nome" (click)="openDeleteModal(item)">
+                <button
+                  class="delete-btn"
+                  [attr.aria-label]="'Excluir o produto ' + item.nome"
+                  (click)="excluir(item.id)"
+                  type="button">
                   <i class="material-icons" aria-hidden="true">cancel</i>
                 </button>
               </div>
@@ -61,7 +69,7 @@
               @if (carregando) {
                 Carregando produtos do servidor...
               } @else {
-                Nenhum produto cadastrado no catálogo. Clique em "Adicionar" para cadastrar o primeiro!
+                Nenhum produto cadastrado no catálogo. Clique em "+ Novo Produto" para cadastrar o primeiro!
               }
             </td>
           </tr>
@@ -70,14 +78,3 @@
     </table>
   </div>
 </main>
-
-<!-- MODAIS-->
-@if(modalAtivo === 'deletar') {
-  <modal-deletar-produto [produto]="produtoParaDeletar" (cancel)="closeModal()" (confirm)="onProdutoDeletado()" />
-}
-@if(modalAtivo === 'adicionar') {
-  <modal-adicionar-produto (cancel)="closeModal()" (add)="onProdutoAdicionado($event)"/>
-}
-@if(modalAtivo === 'editar') {
-  <modal-editar-produto [produto]="produtoSelecionado" (cancel)="closeModal()" (update)="onProdutoEditado($event)"/>
-}

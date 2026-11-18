@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 import { GerenciarProdutos } from './pages/gerenciar-produtos/gerenciar-produtos';
+import { ProdutoFormComponent } from './pages/produto-form/produto-form';
 import { Home } from './home/home';
 import { CarrinhoDeCompras } from './pages/carrinho-de-compras/carrinho-de-compras';
 import { PerfilAdm } from './shared/perfil-adm/perfil-adm';
@@ -45,7 +46,17 @@ export const routes: Routes = [
   },
   {
     path: 'produtos',
-    redirectTo: 'gerenciar-produtos',
-    pathMatch: 'full'
+    component: GerenciarProdutos,
+    title: 'Produtos'
+  },
+  {
+    path: 'produto-cadastro',
+    component: ProdutoFormComponent,
+    title: 'Cadastro de Produto'
+  },
+  {
+    path: 'produto-editar/:id',
+    component: ProdutoFormComponent,
+    title: 'Alteração de Produto'
   }
 ];
