@@ -31,5 +31,24 @@
       "id": "s8ChT1RG_d0"
     }
   ],
+
+  
+  
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Administrador",
+      "email": "admin@gmail.com",
+      "senha": "123456",
+      "perfil": "admin"
+    },
+    {
+      "id": "2",
+      "nome": "Cliente Teste",
+      "email": "cliente@gmail.com",
+      "senha": "123456",
+      "perfil": "cliente"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -15,9 +15,10 @@
     "module": "preserve",
     "paths": {
       "@shared/*": ["./src/app/shared/*"],
+      "@models/*": ["./src/app/models/*"],
       "@pages/*": ["./src/app/pages/*"],
       "@app/*": ["./src/app/*"],
-	  "@public/*": ["./public/*"]
+	    "@public/*": ["./public/*"]
     }
   },
   "angularCompilerOptions": {
