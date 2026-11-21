@@ -1,0 +1,44 @@
+<app-modal maxWidth="80vw">
+  <div class="modal-header">
+    <h2>Editar Produto</h2>
+    <button (click)="onCancel()">
+      <i class="material-icons">close</i>
+    </button>
+  </div>
+
+  <form class="modal-content">
+
+    <div class="form-grid">
+      <div class="left-col">
+        <label for="product-name-id" class="field-name">Nome do Produto</label>
+        <input id="product-name-id" type="text" placeholder="Nome"
+          value="Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16">
+
+        <label for="product-price-id" class="field-name">Preço do Produto</label>
+        <input id="product-price-id" type="text" placeholder="Preço" value="R$ 811, 75">
+
+        <label for="product-stock-id" class="field-name">Quantidade em estoque do Produto</label>
+        <input id="product-stock-id" type="text" placeholder="Estoque" value="16">
+
+      </div>
+
+      <div class="right-col">
+        <label for="product-picture-id" class="field-name">Foto do Produto</label>
+        <img class="prod-pic" src="https://static.thenounproject.com/png/5191452-200.png" alt="Foto do produto">
+        <input id="product-picture-id" type="file">
+
+      </div>
+    </div>
+
+    <label for="product-desc-id" class="field-name">Descrição do Produto</label>
+    <textarea id="product-desc-id" placeholder="Insira a descrição do produto..." cols="30" rows="10">Memória Para PC Fury Beast Kingston 8GB DDR4 3200Mhz - KF432C16BB/8
+      
+      A Memória Fury Beast é um módulo de memória de 1G x 64 bits DDR4-3200 CL16 SDRAM (DRAM síncrona) 1Rx8, com base em 8 componentes FBGA de 1G x 8 bits por módulo. Cada módulo suporta Intel Extreme Memory Profiles 2.0, além de ter sido testado para funcionar como DDR4 em um tempo de baixa latência de 16-20-20 a 1,2V. Cada memória DIMM conta com 288 pinos em contatos de ouro. Aumente a memória do seu PC e armazene todos seus arquivos com segurança com o Fury Beast.
+    </textarea>
+  </form>
+
+  <div class="modal-actions">
+    <button class="cancel" (click)="onCancel()">Voltar</button>
+    <button class="confirm" (click)="onSave()">Salvar</button>
+  </div>
+</app-modal>

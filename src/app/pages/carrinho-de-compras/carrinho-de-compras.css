@@ -1,0 +1,318 @@
+/* ---------- Básico ---------- */
+.pagina {
+  min-height: 100vh;
+  padding: 30px;
+  font-family: "Kode Mono", monospace;
+  background-color: #040019;
+  color: #1f3a6d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+ 
+/* ---------- Etapas (topo) ---------- */
+.etapas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+ 
+.etapa {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  font-size: 11px;
+}
+ 
+.etapa i {
+  font-size: 20px;
+}
+ 
+.etapa.ativa {
+  color: #ff7900;
+}
+
+#linha-1 {
+  width: 60px;
+  height: 2px;
+  background-color: #ff7900;
+}
+ 
+#linha-2, #linha-3, #linha-4, #linha-5 {
+  width: 60px;
+  height: 2px;
+  background-color: white;
+}
+ 
+/* ---------- Layout geral ---------- */
+.conteudo {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+ 
+/* ---------- Lista de produtos ---------- */
+.produtos {
+  flex: 1;
+  background-color: #faf8f5;
+  border: 2px solid #ff9a3c;
+  border-radius: 6px;
+  padding: 25px 25px 15px 25px;
+}
+ 
+.produtos-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 25px;
+  border-bottom: 2px solid #ff9a3c;
+  margin-bottom: 20px;
+}
+ 
+.produtos-topo h2 {
+  font-size: 20px;
+  color: #1f3a6d;
+}
+ 
+.produtos-topo h2 i {
+  color: #1a0050;
+  margin-right: 6px;
+}
+ 
+/* Botão: Remover todos os Pedidos */
+.remover-todos {
+  background: none;
+  border: none;
+  color: #ff1a1a;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.remover-todos:hover {
+  color: #b30000;
+  text-decoration: underline;
+}
+ 
+/* ---------- Cada produto ---------- */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 0;
+}
+ 
+.item img {
+  width: 70px;
+}
+ 
+.info {
+  flex: 1;
+  font-size: 12px;
+}
+ 
+.info .marca {
+  display: block;
+  margin-bottom: 4px;
+}
+ 
+.info h3 {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+ 
+.info p {
+  margin-bottom: 2px;
+}
+ 
+.preco-pix {
+  color: #ff7900;
+  font-weight: bold;
+}
+ 
+.preco-parcelado {
+  font-weight: bold;
+}
+ 
+/* ---------- Quantidade ---------- */
+.quantidade {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 175px;
+  height: 33px;
+  padding: 0 10px;
+  border: 1px solid #1a0050;
+  border-radius: 4px;
+  background-color: white;
+}
+ 
+.quantidade button {
+  background: none;
+  border: none;
+}
+
+/* Botão: lixeira */
+.lixeira {
+  color: #ff1a1a;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.lixeira:hover {
+  color: #b30000;
+  transform: scale(1.2);
+}
+
+/* Botão: + */
+.mais {
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.mais:hover {
+  color: #ff7900;
+  transform: scale(1.3);
+}
+ 
+.numero {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+ 
+/* ---------- Lado direito ---------- */
+.lateral {
+  width: 408px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+ 
+.resumo,
+.botoes {
+  background-color: #faf8f5;
+  border: 2px solid #ff9a3c;
+  border-radius: 8px;
+  padding: 20px;
+}
+ 
+.resumo h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+ 
+.resumo h2 i {
+  color: #1a0050;
+  margin-right: 6px;
+}
+ 
+.linha-resumo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+ 
+.resumo hr {
+  border: none;
+  border-top: 2px solid #ff9a3c;
+  margin: 18px 0;
+}
+ 
+/* ---------- Total ---------- */
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+ 
+.total-titulo {
+  font-size: 18px;
+}
+ 
+.total-valores {
+  text-align: right;
+  font-size: 13px;
+}
+ 
+.valor-pix {
+  color: #ff7900;
+  font-size: 17px;
+  font-weight: bold;
+}
+ 
+.a-prazo {
+  margin-top: 8px;
+  font-size: 12px;
+}
+ 
+.valor-prazo {
+  color: #ff7900;
+  font-weight: bold;
+  font-size: 14px;
+}
+ 
+.parcelas {
+  margin-top: 8px;
+  font-size: 11px;
+}
+ 
+/* ---------- Botões ---------- */
+.botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+/* Estilo comum dos dois botões */
+.btn-continuar,
+.btn-voltar {
+  height: 55px;
+  font-size: 22px;
+  border-radius: 8px;
+  border: 1px solid #1a0050;
+  transition: all 0.2s ease;
+}
+
+/* Botão: Continuar */
+.btn-continuar {
+  background-color: #1a0050;
+  color: white;
+}
+
+.btn-continuar:hover {
+  background-color: #ff7900;
+  border-color: #ff7900;
+}
+
+.btn-continuar:active {
+  transform: scale(0.97);
+}
+
+/* Botão: Voltar */
+.btn-voltar {
+  background-color: white;
+  color: #1a0050;
+}
+
+.btn-voltar:hover {
+  background-color: #ff1a1a;
+  color: white;
+  border: #ff1a1a;
+}
+
+.btn-voltar:active {
+  transform: scale(0.97);
+}

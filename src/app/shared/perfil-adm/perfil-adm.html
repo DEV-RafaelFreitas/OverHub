@@ -1,0 +1,48 @@
+<div class="perfil-header">
+    <h2>Perfil do Administrador</h2>
+    <p>Bem-vindo, {{ admin.nome }}!</p>
+    <p>{{ admin.email }}</p>
+</div>
+
+<main class="perfil-container">
+
+    <aside class="card-menu-lateral">
+        <button class="btn-menu" (click)="novaSenha()"> Nova Senha </button>
+        <button class="btn-menu" (click)="logout()"> Logout </button>
+        <button class="btn-menu" (click)="gerenciarProdutos()"> Gerenciar Produtos </button>
+        <button class="btn-menu" (click)="gerenciarUsuarios()"> Gerenciar Usuários </button>
+        <button class="btn-menu" (click)="verificarPedidos()"> Consultar Pedidos </button>
+    </aside>
+
+    <div class="card-dados">
+        <div class="container" name="dados-cadastrais">
+            <h4>Dados do Administrador</h4>
+            <label class="form-label">Nome Completo: </label>
+            <input type="text" id="nome" [(ngModel)]="admin.nome">
+            <label class="form-label">CPF: </label>
+            <input type="text" id="cpf" [(ngModel)]="admin.cpf">
+            <label class="form-label">E-mail: </label>
+            <input type="email" id="email" [(ngModel)]="admin.email">
+            <label class="form-label">Telefone: </label>
+            <input type="text" id="telefone" [(ngModel)]="admin.telefone">
+        </div>
+
+        <div class="container" name="demandas-pendentes">
+            <h4>Demandas de Trabalho Pendentes</h4>
+            <div class="card-demanda">
+                <header class="demanda-header">
+                    <span class="id-tarefa">#0042</span>
+                    <span class="status-badge status-pendente">Pendente</span>
+                </header>
+
+                <h5 class="demanda-titulo">Aprovação de Novo Produto</h5>
+                <p class="demanda-descricao">O vendedor João enviou o produto "Teclado Mecânico OverHub" para revisão
+                    antes de ir para a loja.</p>
+
+                <footer class="demanda-footer">
+                    <button class="btn-acao-demanda btn-aceitar" (click)="verificarPedidos()">Visualizar</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</main>

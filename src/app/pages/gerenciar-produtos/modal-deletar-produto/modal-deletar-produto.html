@@ -1,0 +1,16 @@
+<app-modal>
+  <div class="modal-header">
+    <h2>Deletar Produto</h2>
+    <i class="material-icons">warning</i>
+  </div>
+
+  <p>
+    Tem certeza de que deseja excluir o item? Lembre-se que esta alteração não poderá ser
+    desfeita!
+  </p>
+
+  <div class="modal-actions">
+    <button class="cancel" (click)="onCancel()">Cancelar</button>
+    <button class="confirm" (click)="onDelete()">Deletar</button>
+  </div>
+</app-modal>

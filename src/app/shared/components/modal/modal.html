@@ -1,0 +1,17 @@
+<div class="modal disable-bg">
+  <!-- TODO: consertar os atributos aria para pegarem o id dinâmico -->
+  <div class="modal-container" role="alertdialog" aria-modal="true" aria-labelledby="title-id"
+    aria-describedby="desc-id" [style.max-width]="maxWidth()">
+    <header [class.has-border]="hasHeaderBorder()">
+      <ng-content select=".modal-header"></ng-content>
+    </header>
+
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+
+    <footer>
+      <ng-content select=".modal-actions"></ng-content>
+    </footer>
+  </div>
+</div>

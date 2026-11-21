@@ -1,3 +1,7 @@
+* {
+    font-family: var(--fonte, 'Kode Mono', monospace);
+}
+
 /* A tag <app-login> vira um bloco que ocupa o espaço entre header e footer */
 :host {
     display: block;
@@ -52,18 +56,13 @@
     color: var(--cor-laranja-claro, #ff7900);
 }
 
-/* ---------- Texto escondido (só leitor de tela lê) ----------
-   Serve para o label "E-mail" (sr-only) e para o label "Senha" (senha1) */
-.sr-only{
-    display: none;
-}
-
 /* ---------- Campos ---------- */
 .campo {
     margin-bottom: 30px;
 }
 
 .campo input {
+    box-sizing: border-box;
     width: 100%;
     height: clamp(56px, 8vw, 70px);
     padding: 0 clamp(16px, 3vw, 26px);

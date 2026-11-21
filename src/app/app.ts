@@ -1,12 +1,18 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { HeaderComponent } from './header/header';
+import { Footer } from './shared/components/footer/footer';
 import { RouterOutlet } from '@angular/router';
 
+
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, Footer],
   templateUrl: './app.html',
+  styleUrl: './app.css'
 })
+
 export class App {
-  protected readonly title = signal('overhub');
+  title = 'OverHub';
 }
+
