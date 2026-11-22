@@ -31,5 +31,16 @@
       "id": "s8ChT1RG_d0"
     }
   ],
+  "clientes": [
+    {
+      "nome": "Teste",
+      "sobrenome": "Testee",
+      "cpf": "11111111111",
+      "rg": "222222222",
+      "email": "teste@email.com",
+      "senha": "TESTE1",
+      "id": "HrAVNWkn8zk"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
