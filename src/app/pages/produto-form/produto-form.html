@@ -1,0 +1,109 @@
+<main class="management-container">
+  <div class="layout-card">
+    <header class="modal-header">
+      <h2>{{ produtoId ? 'Editar Produto' : 'Adicionar Produto' }}</h2>
+      <a routerLink="/gerenciar-produtos" class="close-btn" aria-label="Voltar">
+        <i class="material-icons">close</i>
+      </a>
+    </header>
+
+    <form (ngSubmit)="salvar()" class="modal-content">
+      <div class="form-grid">
+        <div class="left-col">
+          @if (produtoId) {
+            <label for="product-id" class="field-label">Código do Produto (ID)</label>
+            <input
+              id="product-id"
+              type="text"
+              [ngModel]="produto.id"
+              name="id"
+              disabled>
+          }
+
+          <label for="product-name-id" class="field-label">Nome do Produto *</label>
+          <input
+            id="product-name-id"
+            type="text"
+            placeholder="Nome"
+            [(ngModel)]="produto.nome"
+            name="nome"
+            required>
+
+          <label for="product-brand-id" class="field-label">Marca</label>
+          <input
+            id="product-brand-id"
+            type="text"
+            placeholder="Marca (Ex: Overhub, Kingston)"
+            [(ngModel)]="produto.marca"
+            name="marca">
+
+          <label for="product-category-id" class="field-label">Categoria</label>
+          <input
+            id="product-category-id"
+            type="text"
+            placeholder="Categoria (Ex: Hardware, Periféricos)"
+            [(ngModel)]="produto.categoria"
+            name="categoria">
+
+          <label for="product-price-id" class="field-label">Preço do Produto (R$) *</label>
+          <input
+            id="product-price-id"
+            type="number"
+            step="0.01"
+            placeholder="Preço"
+            [(ngModel)]="produto.preco"
+            name="preco"
+            required>
+
+          <label for="product-stock-id" class="field-label">Quantidade em Estoque *</label>
+          <input
+            id="product-stock-id"
+            type="number"
+            placeholder="Estoque"
+            [(ngModel)]="produto.estoque"
+            name="estoque"
+            required>
+        </div>
+
+        <div class="right-col">
+          <label class="field-label">Foto do Produto</label>
+          <img
+            class="prod-pic"
+            [src]="produto.imagem || 'https://static.thenounproject.com/png/5191452-200.png'"
+            alt="Foto do produto">
+
+          <input
+            id="product-picture-id"
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)">
+
+          <label for="product-image-url" class="field-label" style="margin-top: 10px; font-size: 0.85rem;">Ou informe o link da imagem:</label>
+          <input
+            id="product-image-url"
+            type="text"
+            placeholder="https://..."
+            [(ngModel)]="produto.imagem"
+            name="imagem"
+            style="font-size: 0.85rem;">
+        </div>
+      </div>
+
+      <label for="product-desc-id" class="field-label">Descrição do Produto</label>
+      <textarea
+        id="product-desc-id"
+        placeholder="Insira a descrição do produto..."
+        cols="30"
+        rows="8"
+        [(ngModel)]="produto.descricao"
+        name="descricao"></textarea>
+
+      <div class="modal-actions">
+        <a routerLink="/gerenciar-produtos" class="cancel">Voltar</a>
+        <button type="submit" class="confirm">
+          {{ produtoId ? 'Salvar Alterações' : 'Adicionar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

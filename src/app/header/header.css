@@ -174,3 +174,10 @@
   align-items: center;
   justify-content: center;
 }
+
+/* botao de logout no header */
+.btn-sair {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}

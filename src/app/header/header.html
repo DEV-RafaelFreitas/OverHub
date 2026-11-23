@@ -50,8 +50,15 @@
 
     <!-- Bloco Direito: Botões de Ação, Login e Ícones -->
     <div class="header-actions">
-      <a routerLink="/cadastro" class="btn-cadastre">CADASTRE-SE</a>
-      <a routerLink="/login" class="btn-login">LOGIN</a>
+      @if (auth.usuario()) {
+        <a [routerLink]="auth.usuario()?.perfil === 'admin' ? '/perfil-admin' : '/perfil-user'" class="btn-login">
+          OLÁ, {{ auth.usuario()?.nome }}
+        </a>
+        <button type="button" class="btn-cadastre btn-sair" (click)="sair()">SAIR</button>
+      } @else {
+        <a routerLink="/cadastro" class="btn-cadastre">CADASTRE-SE</a>
+        <a routerLink="/login" class="btn-login">LOGIN</a>
+      }
 
       <!-- Favoritos -->
       <a routerLink="/favoritos" class="icon-btn" aria-label="Favoritos">

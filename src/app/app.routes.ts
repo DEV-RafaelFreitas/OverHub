@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 import { GerenciarProdutos } from './pages/gerenciar-produtos/gerenciar-produtos';
+import { ProdutoFormComponent } from './pages/produto-form/produto-form';
 import { Home } from './home/home';
 import { CarrinhoDeCompras } from './pages/carrinho-de-compras/carrinho-de-compras';
 import { PerfilAdm } from './shared/perfil-adm/perfil-adm';
@@ -11,7 +12,7 @@ export const routes: Routes = [
   { 
     path: '', 
     component: Home,
-	  title: 'Página inicial'
+    title: 'Página inicial'
   },
   {
     path: 'login', 
@@ -35,14 +36,22 @@ export const routes: Routes = [
   },
   {
     path: 'perfil-user',
-	  component: PerfilUser,
+    component: PerfilUser,
     title: 'Perfil Cliente'
   },
   {
     path: 'gerenciar-produtos',
     component: GerenciarProdutos,
     title: 'Gerenciar Produtos'
+  },
+  {
+    path: 'produto-cadastro',
+    component: ProdutoFormComponent,
+    title: 'Cadastro de Produto'
+  },
+  {
+    path: 'produto-editar/:id',
+    component: ProdutoFormComponent,
+    title: 'Alteração de Produto'
   }
 ];
-
-

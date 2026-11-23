@@ -1,12 +1,10 @@
-export class Produto {
-  constructor(
-    public id: number,
-    public nome: string,
-    public marca: string,
-    public descricao: string,
-    public categoria: string,
-    public preco: number,     // preço normal (parcelado no cartão)
-    public estoque: number,
-    public imagem: string,
-  ) {}
+export interface Produto {
+  id?: number | string;
+  nome: string;
+  marca?: string;
+  descricao: string;
+  categoria?: string;
+  preco: number;
+  estoque: number;
+  imagem: string;
 }
