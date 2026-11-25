@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { CarrinhoService } from '../services/carrinho.service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent {
   protected auth = inject(AuthService);
+  protected carrinho = inject(CarrinhoService);
   private router = inject(Router);
 
   termoBusca: string = '';
-  cartCount: number = 0;
 
   // apenas adicionando o metodo de sair do user logado bb
   sair(): void {
