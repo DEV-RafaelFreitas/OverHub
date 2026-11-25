@@ -10,7 +10,7 @@
   min-height: 100vh;
 }
 
-.footer {
+footer {
   width: 100%;
   background-color: #030111;
   border: 2px solid #8129ff;
@@ -19,7 +19,7 @@
   color: #ffffff;
 }
 
-.footer-container {
+.footer .container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

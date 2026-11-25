@@ -16,7 +16,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
+  z-index: -1;
 }
 
 .texto {
@@ -67,9 +67,6 @@ h2 {
 /* --- CATEGORIAS --- */
 .boxcat {
   gap: 16px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -121,8 +118,8 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  /* max-width: 1200px; */
+  /* margin: 0 auto; */
   padding: 30px 20px;
   justify-items: center;
 }
