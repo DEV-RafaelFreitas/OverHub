@@ -24,6 +24,11 @@ export class CarrinhoService {
             return;
         }
 
+        if (produto.estoque < 1) {
+            alert('Produto sem estoque disponível.');
+            return;
+        }
+
         const existente = this.itens().find(i => i.produto.id === produto.id);
 
         if (existente) {
