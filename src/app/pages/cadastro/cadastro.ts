@@ -17,6 +17,7 @@ export class Cadastro {
     rg: '',
     email: '',
     senha: '',
+    perfil: 'cliente'
   };
   confirmarSenha = '';
   aceitouTermos = false;
@@ -26,6 +27,7 @@ export class Cadastro {
 
   salvar() {
     const c = this.clientes;
+    c.email = c.email.trim().toLowerCase();
     if (!c.nome || !c.sobrenome || !c.cpf || !c.rg || !c.email || !c.senha) {
       alert('Preencha todos os campos.');
       return;

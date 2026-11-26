@@ -10,21 +10,10 @@
     <div class="center-content">
       <!-- Barra de Busca -->
       <div class="search-box">
-        <input
-          #searchInput
-          type="text"
-          placeholder="Pesquise na OverHub"
-          (keyup.enter)="fazerBusca(searchInput.value)"
-        />
+        <input #searchInput type="text" placeholder="Pesquise na OverHub"
+          (keyup.enter)="fazerBusca(searchInput.value)" />
         <button (click)="fazerBusca(searchInput.value)" type="button" aria-label="Pesquisar">
-          <svg
-            viewBox="0 0 24 24"
-            width="20"
-            height="20"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-          >
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
@@ -33,58 +22,44 @@
 
       <!-- Links de Navegação com routerLink do Angular -->
       <nav class="nav-menu">
-        <a
-          routerLink="/"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="nav-link"
-          >HOME</a
-        >
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link">HOME</a>
         <a routerLink="/produtos" routerLinkActive="active" class="nav-link">PRODUTOS</a>
-        <a routerLink="/acessibilidade" routerLinkActive="active" class="nav-link"
-          >ACESSIBILIDADE</a
-        >
+        <a routerLink="/acessibilidade" routerLinkActive="active" class="nav-link">ACESSIBILIDADE</a>
         <a routerLink="/suporte" routerLinkActive="active" class="nav-link">SUPORTE</a>
       </nav>
     </div>
 
     <!-- Bloco Direito: Botões de Ação, Login e Ícones -->
-    <div class="header-actions">
-      <a routerLink="/cadastro" class="btn-cadastre">CADASTRE-SE</a>
-      <a routerLink="/login" class="btn-login">LOGIN</a>
+    <!-- ADICIONADO: alterna os botões conforme o usuário esteja logado ou não -->
+    @if (logado()) {
+    <!-- Logado: leva ao perfil certo (admin ou cliente), usando o estilo do botão CADASTRE-SE -->
+    <a [routerLink]="rotaPerfil()" class="btn-cadastre">MEU PERFIL</a>
+    <!-- Logado: encerra a sessão. Usa o estilo do botão LOGIN e chama o sair() do header.ts -->
+    <a class="btn-login" role="button" tabindex="0" style="cursor: pointer" (click)="sair()">SAIR</a>
+    } @else {
+    <!-- Não logado: os botões que já existiam, sem alteração -->
+    <a routerLink="/cadastro" class="btn-cadastre">CADASTRE-SE</a>
+    <a routerLink="/login" class="btn-login">LOGIN</a>
+    }
 
-      <!-- Favoritos -->
-      <a routerLink="/favoritos" class="icon-btn" aria-label="Favoritos">
-        <svg
-          viewBox="0 0 24 24"
-          width="22"
-          height="22"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-          ></path>
-        </svg>
-      </a>
+    <!-- Favoritos -->
+    <a routerLink="/favoritos" class="icon-btn" aria-label="Favoritos">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+        </path>
+      </svg>
+    </a>
 
-      <!-- Carrinho -->
-      <a routerLink="/carrinho" class="icon-btn cart-btn" aria-label="Carrinho">
-        <svg
-          viewBox="0 0 24 24"
-          width="22"
-          height="22"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <circle cx="9" cy="21" r="1"></circle>
-          <circle cx="20" cy="21" r="1"></circle>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-        <span class="cart-badge">{{ cartCount }}</span>
-      </a>
-    </div>
+    <!-- Carrinho -->
+    <a routerLink="/carrinho" class="icon-btn cart-btn" aria-label="Carrinho">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <span class="cart-badge">{{ cartCount }}</span>
+    </a>
   </div>
 </header>

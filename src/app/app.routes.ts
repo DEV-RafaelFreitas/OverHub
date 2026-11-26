@@ -7,56 +7,47 @@ import { CarrinhoDeCompras } from './pages/carrinho-de-compras/carrinho-de-compr
 import { PerfilAdm } from './shared/perfil-adm/perfil-adm';
 import { PerfilUser } from './shared/perfil-user/perfil-user';
 import { Cadastro } from './pages/cadastro/cadastro';
+import { guard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { 
-    path: '', 
-    component: Home,
-    title: 'Página inicial'
-  },
-  {
-    path: 'login', 
-    component: Login,
-    title: 'Login'
-  },
-  { 
-    path: 'cadastro',
-    component: Cadastro,
-    title: 'Cadastro'
-  },
-  { 
-    path: 'carrinho',
-    component: CarrinhoDeCompras,
-    title: 'Carrinho'
-  },
-  {
-    path: 'perfil-admin',
-    component: PerfilAdm,
-    title: 'Perfil Administrador'
-  },
+  { path: '', component: Home, title: 'Página inicial' },
+  { path: 'login', component: Login, title: 'Login' },
+  { path: 'cadastro', component: Cadastro, title: 'Cadastro' },
+  { path: 'carrinho', component: CarrinhoDeCompras, title: 'Carrinho' },
+
   {
     path: 'perfil-user',
     component: PerfilUser,
-    title: 'Perfil Cliente'
+    title: 'Perfil Cliente',
+    canActivate: [guard('cliente')],
+  },
+
+  {
+    path: 'perfil-admin',
+    component: PerfilAdm,
+    title: 'Perfil Administrador',
+    canActivate: [guard('admin')],
   },
   {
     path: 'gerenciar-produtos',
     component: GerenciarProdutos,
-    title: 'Gerenciar Produtos'
-  },
-  {
-    path: 'produtos',
-    component: GerenciarProdutos,
-    title: 'Produtos'
+    title: 'Gerenciar Produtos',
+    canActivate: [guard('admin')],
   },
   {
     path: 'produto-cadastro',
     component: ProdutoFormComponent,
-    title: 'Cadastro de Produto'
+    title: 'Cadastro de Produto',
+    canActivate: [guard('admin')],
   },
   {
     path: 'produto-editar/:id',
     component: ProdutoFormComponent,
-    title: 'Alteração de Produto'
-  }
+    title: 'Alteração de Produto',
+    canActivate: [guard('admin')],
+  },
+
+  { path: 'produtos', component: GerenciarProdutos, title: 'Produtos' },
 ];
+
+sessionStorage.clear();
