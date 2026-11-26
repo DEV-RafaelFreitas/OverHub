@@ -1,48 +1,60 @@
-import { Injectable, inject, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Injectable, inject, signal } from '@angular/core';
 
-export interface Sessao {
-  id: string;
+// Usuário como está no db.json
+export interface UsuarioDb {
+  id: number | string;
   nome: string;
   email: string;
-  perfil: 'cliente' | 'adm';
+  senha: string;
+  perfil: 'cliente' | 'admin';
 }
 
-@Injectable({ providedIn: 'root' })
+// O que guardamos no localStorage
+export interface Sessao {
+  id: number | string;
+  nome: string;
+  email: string;
+  perfil: 'cliente' | 'admin';
+}
+
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly API = 'http://localhost:3000/clientes';
-  private readonly CHAVE = 'overhub_sessao';
+  private readonly api = 'http://localhost:3000/usuarios';
 
+  // Guarda quem está logado. Inicia lendo do localStorage para manter o login ao dar F5.
   usuario = signal<Sessao | null>(this.lerSessao());
-  logado = computed(() => this.usuario() !== null);
-  ehAdm = computed(() => this.usuario()?.perfil === 'adm');
 
-  login(email: string, senha: string): Observable<boolean> {
-    return this.http
-      .get<any[]>(this.API, { params: { email, senha } })
-      .pipe(
-        map((lista) => {
-          const u = lista[0];
-          if (!u) return false;
-          const sessao: Sessao = { id: u.id, nome: u.nome, email: u.email, perfil: u.perfil ?? 'cliente' };
-          this.usuario.set(sessao);
-          sessionStorage.setItem(this.CHAVE, JSON.stringify(sessao));
-          return true;
-        })
-      );
+  // Busca no json-server o usuário pelo e-mail
+  buscarPorEmail(email: string) {
+    return this.http.get<UsuarioDb[]>(`${this.api}?email=${encodeURIComponent(email)}`);
   }
 
-  logout() {
+  // Salva no localStorage e atualiza o signal do usuário logado
+  salvarSessao(usuario: UsuarioDb): void {
+    const sessao: Sessao = {
+      id: usuario.id,
+      nome: usuario.nome,
+      email: usuario.email,
+      perfil: usuario.perfil,
+    };
+    localStorage.setItem('sessao', JSON.stringify(sessao));
+    this.usuario.set(sessao);
+  }
+
+  // Faz o logout limpando o localStorage e o signal
+  sair(): void {
+    localStorage.removeItem('sessao');
     this.usuario.set(null);
-    sessionStorage.removeItem(this.CHAVE);
   }
 
   private lerSessao(): Sessao | null {
     try {
-      const txt = sessionStorage.getItem(this.CHAVE);
-      return txt ? JSON.parse(txt) : null;
+      const texto = localStorage.getItem('sessao');
+      return texto ? JSON.parse(texto) : null;
     } catch {
       return null;
     }

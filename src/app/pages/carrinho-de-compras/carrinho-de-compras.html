@@ -1,5 +1,3 @@
-<!-- ETAPAS DA COMPRA -->
-
 <div class="pagina">
 
   <nav class="etapas">
@@ -60,14 +58,13 @@
  
   <main class="conteudo">
  
-    <!-- LISTA DE PRODUTOS -->
     <section class="produtos">
 
       <div class="produtos-topo">
 
         <h2><i class="fa-solid fa-basket-shopping"></i> Produtos</h2>
 
-        <button class="remover-todos">
+        <button class="remover-todos" type="button" (click)="removerTodos()">
 
           <i class="fa-solid fa-trash"></i> Remover todos os Produtos
 
@@ -75,143 +72,37 @@
 
       </div>
  
-      <!-- Copie e cole este bloco para cada produto -->
-      <article class="item">
+      @for (item of itens; track item.produto.id) {
 
-        <img src="/image/memoria-ram-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1742845663_m.webp" alt="Memória RAM Kingston Fury Beast">
-        <div class="info">
+        <article class="item">
+          <img [src]="item.produto.imagem" [alt]="item.produto.nome">
 
-          <span class="marca">Kingston</span>
-          <h3>Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16</h3>
-          <p>Com desconto no PIX: <span class="preco-pix">R$ 689,99</span></p>
-          <p>Parcelado no cartão sem juros: <span class="preco-parcelado">R$ 811,75</span></p>
+          <div class="info">
+            <span class="marca">{{ item.produto.marca}}</span>
+            <h3>{{ item.produto.nome }}</h3>
+            <p>Preço: <span class="preco-pix">{{ formatar(item.produto.preco) }}</span></p>
+          </div>
 
-        </div>
+          <div class="quantidade">
+            <button class="lixeira" type="button" (click)="diminuirOuRemover(item)">
+              @if (item.quantidade > 1) {
+                -
+              } @else {
+                <i class="fa-regular fa-trash-can"></i>
+              }
+            </button>
+            <span class="numero">{{ item.quantidade }}</span>
+            <button class="mais" type="button" (click)="aumentar(item)">+</button>
+          </div>
 
-        <div class="quantidade">
+        </article>
 
-          <button class="lixeira"><i class="fa-regular fa-trash-can"></i></button>
-          <span class="numero">1</span>
-          <button class="mais">+</button>
-
-        </div>
-
-      </article>
- 
-      <article class="item">
-
-        <img src="/image/memoria-ram-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1742845663_m.webp" alt="Memória RAM Kingston Fury Beast">
-
-        <div class="info">
-
-          <span class="marca">Kingston</span>
-          <h3>Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16</h3>
-          <p>Com desconto no PIX: <span class="preco-pix">R$ 689,99</span></p>
-          <p>Parcelado no cartão sem juros: <span class="preco-parcelado">R$ 811,75</span></p>
-
-        </div>
-
-        <div class="quantidade">
-
-          <button class="lixeira"><i class="fa-regular fa-trash-can"></i></button>
-          <span class="numero">1</span>
-          <button class="mais">+</button>
-
-        </div>
-
-      </article>
- 
-      <article class="item">
-
-        <img src="/image/memoria-ram-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1742845663_m.webp" alt="Memória RAM Kingston Fury Beast">
-
-        <div class="info">
-
-          <span class="marca">Kingston</span>
-          <h3>Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16</h3>
-          <p>Com desconto no PIX: <span class="preco-pix">R$ 689,99</span></p>
-          <p>Parcelado no cartão sem juros: <span class="preco-parcelado">R$ 811,75</span></p>
-
-        </div>
-
-        <div class="quantidade">
-          <button class="lixeira"><i class="fa-regular fa-trash-can"></i></button>
-          <span class="numero">1</span>
-          <button class="mais">+</button>
-
-        </div>
-
-      </article>
-
-      <article class="item">
-
-        <img src="/image/memoria-ram-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1742845663_m.webp" alt="Memória RAM Kingston Fury Beast">
-
-        <div class="info">
-
-          <span class="marca">Kingston</span>
-          <h3>Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16</h3>
-          <p>Com desconto no PIX: <span class="preco-pix">R$ 689,99</span></p>
-          <p>Parcelado no cartão sem juros: <span class="preco-parcelado">R$ 811,75</span></p>
-
-        </div>
-
-        <div class="quantidade">
-          <button class="lixeira"><i class="fa-regular fa-trash-can"></i></button>
-          <span class="numero">1</span>
-          <button class="mais">+</button>
-
-        </div>
-
-      </article>
-
-      <article class="item">
-
-        <img src="/image/memoria-ram-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1742845663_m.webp" alt="Memória RAM Kingston Fury Beast">
-
-        <div class="info">
-
-          <span class="marca">Kingston</span>
-          <h3>Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16</h3>
-          <p>Com desconto no PIX: <span class="preco-pix">R$ 689,99</span></p>
-          <p>Parcelado no cartão sem juros: <span class="preco-parcelado">R$ 811,75</span></p>
-
-        </div>
-
-        <div class="quantidade">
-          <button class="lixeira"><i class="fa-regular fa-trash-can"></i></button>
-          <span class="numero">1</span>
-          <button class="mais">+</button>
-
-        </div>
-
-      </article>
-
-      <article class="item">
-
-        <img src="/image/memoria-ram-kingston-fury-beast-8gb-3200mhz-ddr4-cl16-preto-kf432c16bb-8_1742845663_m.webp" alt="Memória RAM Kingston Fury Beast">
-
-        <div class="info">
-
-          <span class="marca">Kingston</span>
-          <h3>Memória RAM Kingston Fury Beast, 8gb, 3200Mhz, DDR4, CL16</h3>
-          <p>Com desconto no PIX: <span class="preco-pix">R$ 689,99</span></p>
-          <p>Parcelado no cartão sem juros: <span class="preco-parcelado">R$ 811,75</span></p>
-
-        </div>
-
-        <div class="quantidade">
-          <button class="lixeira"><i class="fa-regular fa-trash-can"></i></button>
-          <span class="numero">1</span>
-          <button class="mais">+</button>
-
-        </div>
-
-      </article>
+      }@empty {
+        <p>Seu carrinho está vazio.</p>
+      }
 
     </section>
  
-    <!-- LADO DIREITO -->
     <aside class="lateral">
  
       <section class="resumo">
@@ -220,15 +111,15 @@
  
         <div class="linha-resumo">
 
-          <span>Valor dos produtos (7):</span>
-          <span>R$ 5.842,66</span>
+          <span>Valor dos produtos ({{ quantidadeTotal }}):</span>
+          <span>{{ formatar(subtotal) }}</span>
 
         </div>
 
         <div class="linha-resumo">
             
           <span>Frete:</span>
-          <span>R$ 57,49</span>
+          <span>{{ formatar(valorFrete) }}</span>
 
         </div>
  
@@ -240,9 +131,9 @@
 
           <div class="total-valores">
 
-            <p>À vista no Pix <span class="valor-pix">R$ 5.900,15</span></p>
-            <p class="a-prazo">ou à prazo <span class="valor-prazo">R$ 6.053,24</span></p>
-            <p class="parcelas">(até 10x de R$ 605,32 sem juros)</p>
+            <p>À vista no Pix <span class="valor-pix">{{ formatar(total) }}</span></p>
+            <p class="a-prazo">ou à prazo <span class="valor-prazo">R$ 0,00</span></p>
+            <p class="parcelas">(até 10x de R$ 0,00 sem juros)</p>
 
           </div>
 
@@ -252,8 +143,8 @@
  
       <section class="botoes">
 
-        <button class="btn-continuar">Continuar</button>
-        <button class="btn-voltar">Voltar</button>
+        <button class="btn-continuar" type="button" (click)="finalizarCompra()">Continuar</button>
+        <button class="btn-voltar" type="button" routerLink="/">Voltar</button>
 
       </section>
  

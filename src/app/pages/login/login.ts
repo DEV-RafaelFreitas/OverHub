@@ -1,14 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
-type Perfil = 'admin' | 'cliente';
-
-const ROTA_POR_PERFIL: Record<Perfil, string> = {
-  admin: '/perfil-admin',
-  cliente: '/perfil-user',
-};
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   imports: [ReactiveFormsModule, RouterLink],
@@ -19,9 +12,7 @@ const ROTA_POR_PERFIL: Record<Perfil, string> = {
 export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
-  private readonly http = inject(HttpClient);
-
-  protected readonly erroLogin = signal(false);
+  private readonly auth = inject(AuthService);
 
   protected readonly form = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
@@ -42,25 +33,24 @@ export class Login {
     const { email, senha } = this.form.getRawValue();
     const emailNormalizado = email.trim().toLowerCase();
 
-    this.http
-      .get<any[]>('http://localhost:3000/clientes', {
-        params: { email: emailNormalizado, senha },
-      })
-      .subscribe({
-        next: (lista) => {
-          const usuario = lista[0];
-          if (!usuario) {
-            this.erroLogin.set(true);
-            alert('E-mail ou senha incorretos.');
-            this.form.controls.senha.reset();
-            return;
+    this.auth.buscarPorEmail(emailNormalizado).subscribe({
+      next: (usuarios) => {
+        const usuario = usuarios.find((u) => u.senha === senha);
+        if (usuario) {
+          this.auth.salvarSessao(usuario);
+          if (usuario.perfil === 'admin') {
+            this.router.navigate(['/perfil-admin']);
+          } else {
+            this.router.navigate(['/perfil-user']);
           }
-          const perfil: Perfil = usuario.perfil ?? 'cliente';
-          sessionStorage.setItem('perfil', perfil);
-          sessionStorage.setItem('nome', usuario.nome);
-          void this.router.navigateByUrl(ROTA_POR_PERFIL[perfil]);
-        },
-        error: () => alert('Erro ao conectar. A API está rodando?'),
-      });
+        } else {
+          alert('E-mail ou senha incorretos.');
+          this.form.controls.senha.reset();
+        }
+      },
+      error: () => {
+        alert('Servidor fora do ar. Verifique se o json-server está rodando.');
+      }
+    });
   }
 }
