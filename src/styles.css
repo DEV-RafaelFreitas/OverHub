@@ -49,6 +49,29 @@ table {
   border-collapse: collapse;
 }
 
+/* Estilo autofill do input
+ *
+ * As variáveis --input-** devem ser sobrescritas nos componentes individuais
+ * para que o estilo seja aplicado 
+ */
+input:is(:-webkit-autofill, :autofill),
+input:is(:-webkit-autofill, :autofill):hover,
+input:is(:-webkit-autofill, :autofill):focus,
+input:is(:-webkit-autofill, :autofill):active {
+  -webkit-box-shadow: 0 0 0px 1000px var(--input-bg-color) inset !important;
+  -webkit-text-fill-color: var(--input-color) !important;
+
+  background-clip: padding-box !important;
+  border: var(--input-border, none) !important;
+
+  caret-color: var(--input-caret-color);
+
+  font-family: inherit !important;
+  font-size: var(--input-font-size, 1rem) !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+}
+
 /* Estilo padrão modais */
 .modal-header {
   display: flex;
@@ -67,18 +90,26 @@ table {
 /*FIM modais*/
 
 /* ---------- Texto escondido (só leitor de tela lê) ---------- */
-.sr-only {  /* Screen-reader only */
-  position: absolute;     /* tira do fluxo normal */
+/* Screen-reader only */
+.sr-only {
+  /* tira do fluxo normal */
+  position: absolute;
+
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
 
-  /* esconde a visualização: */
-  clip: rect(0, 0, 0, 0);     /* Suporte a navegadores legados */
-  overflow: hidden;           /* Suporte a navegadores legados */
-  clip-path: inset(50%);      /* Versão moderna */
+  /* Esconde a visualização: */
+  /* Suporte a navegadores legados */
+  clip: rect(0, 0, 0, 0);
+  /* Suporte a navegadores legados */
+  overflow: hidden;
+  /* Versão moderna */
+  clip-path: inset(50%);
 
-  white-space: nowrap;      /* Impede que o leitor de tela soletre letra por letra pelo width de 1px */
+  /* Impede que o leitor de tela soletre letra por letra pelo width de 1px */
+  white-space: nowrap;
 }
+
 /* FIM Screen-reader */
