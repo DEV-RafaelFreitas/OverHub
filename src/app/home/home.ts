@@ -1,9 +1,11 @@
-
 import { Component, OnInit, ViewEncapsulation, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../services/produto.service';
 import { Produto } from '@models/produto';
 import { CarrinhoService } from '../services/carrinho.service';
+import { inject } from '@angular/core';
+import { FavoritosService } from '../services/favoritos.service';
+
 
 @Component({
   selector: 'app-home',
@@ -13,16 +15,14 @@ import { CarrinhoService } from '../services/carrinho.service';
   encapsulation: ViewEncapsulation.None
 })
 export class Home implements OnInit {
+  private produtoService = inject(ProdutoService);
+  private carrinhoService= inject(CarrinhoService);
 
+  favoritos = inject(FavoritosService);
   produtos = signal<Produto[]>([]);
   carregando = signal(true);
   erro = signal(false);
-
-  constructor(
-    private produtoService: ProdutoService,
-    private carrinhoService: CarrinhoService
-  ) {}
-
+  
   ngOnInit(): void {
     this.carregando.set(true);
     this.erro.set(false);

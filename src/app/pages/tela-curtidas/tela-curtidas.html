@@ -1,0 +1,82 @@
+<main class="container">
+
+  <section class="page-title">
+    <div>
+      <h1>Meus <span>Favoritos</span></h1>
+      <p>{{ lista().length }} {{ lista().length === 1 ? 'item salvo' : 'itens salvos' }} na sua lista de desejos</p>
+    </div>
+
+    <div class="toolbar">
+      <label class="select">
+        <span>Ordenar por</span>
+        <select (change)="mudarOrdem($event)">
+          <option value="recentes">Mais recentes</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+          <option value="nome">Nome (A-Z)</option>
+        </select>
+      </label>
+      @if (lista().length > 0) {
+        <button class="btn btn-outline" type="button" (click)="limpar()">Limpar lista</button>
+      }
+    </div>
+  </section>
+
+  @if (carregando()) {
+    <p class="aviso">Carregando favoritos...</p>
+  } @else if (erro()) {
+    <p class="aviso">{{ erro() }}</p>
+  } @else if (lista().length > 0) {
+    <section class="grid">
+      @for (p of lista(); track p.id) {
+        <article class="card">
+          <button class="like" type="button" title="Remover dos favoritos" (click)="remover(p.id)">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <path d="M12 21s-7.5-4.7-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2 0 3.7 1.1 4.6 2.7h2c.9-1.6 2.6-2.7 4.6-2.7 3.6 0 5.5 3.8 4 7.2C19.5 16.3 12 21 12 21z" />
+            </svg>
+          </button>
+
+          <div class="thumb">
+            @if (p.imagem) {
+              <img [src]="p.imagem" [alt]="p.nome" />
+            }
+          </div>
+
+          <div class="card-body">
+            @if (p.categoria) {
+              <span class="tag">{{ p.categoria }}</span>
+            }
+            @if (p.marca) {
+              <small class="marca">{{ p.marca }}</small>
+            }
+            <h3>{{ p.nome }}</h3>
+
+            <div class="price">
+              <strong>{{ formatar(p.preco) }}</strong>
+            </div>
+            <p class="installments">ou 10x de {{ parcela(p) }} sem juros</p>
+
+            <button
+              class="btn btn-primary btn-full"
+              type="button"
+              [disabled]="p.estoque <= 0"
+              (click)="adicionarAoCarrinho(p)"
+            >
+              {{ p.estoque > 0 ? 'Adicionar ao carrinho' : 'Sem estoque' }}
+            </button>
+          </div>
+        </article>
+      }
+    </section>
+  } @else {
+    <section class="empty">
+      <svg viewBox="0 0 24 24" width="72" height="72" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 21s-7.5-4.7-9.6-9.3C.9 8.3 2.8 4.5 6.4 4.5c2 0 3.7 1.1 4.6 2.7h2c.9-1.6 2.6-2.7 4.6-2.7 3.6 0 5.5 3.8 4 7.2C19.5 16.3 12 21 12 21z" />
+      </svg>
+      <h2>Sua lista está vazia</h2>
+      <p>Toque no coração dos produtos para salvá-los aqui.</p>
+      <a href="/produtos" class="btn btn-primary">Explorar Ofertas</a>
+    </section>
+  }
+
+</main>

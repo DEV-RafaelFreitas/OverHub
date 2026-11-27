@@ -40,11 +40,11 @@
           class="nav-link"
           >HOME</a
         >
-        <a routerLink="/produtos" routerLinkActive="active" class="nav-link">PRODUTOS</a>
-        <a routerLink="/acessibilidade" routerLinkActive="active" class="nav-link"
-          >ACESSIBILIDADE</a
-        >
-        <a routerLink="/suporte" routerLinkActive="active" class="nav-link">SUPORTE</a>
+        <a routerLink="/favoritos" routerLinkActive="active" class="nav-link">FAVORITOS</a>
+        <a routerLink="/carrinho" routerLinkActive="active" class="nav-link">CARRINHO</a>
+        @if (auth.usuario()) {
+          <a [routerLink]="auth.usuario()?.perfil === 'admin' ? '/perfil-admin' : '/perfil-user'" routerLinkActive="active" class="nav-link">PERFIL</a>
+        }
       </nav>
     </div>
 

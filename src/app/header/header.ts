@@ -3,17 +3,21 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { CarrinhoService } from '../services/carrinho.service';
 
+
 @Component({
   selector: 'app-header',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css',
+  standalone: true,
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
   protected auth = inject(AuthService);
   protected carrinho = inject(CarrinhoService);
   private router = inject(Router);
+ 
+
 
   termoBusca: string = '';
 
