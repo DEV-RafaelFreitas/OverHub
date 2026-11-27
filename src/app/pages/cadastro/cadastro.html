@@ -1,33 +1,32 @@
-<form class="cartao" >
-    <h1> Criar Conta </h1>
-    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-    <p class="subtitulo">Informe os seus dados abaixo.</p>
-   
-     <div class="linha">
-      <input type="text" placeholder="Nome">
-      <input type="text" placeholder="Sobrenome">
-     </div>
+<form class="cartao">
+  <h1> Criar Conta </h1>
+  <p class="subtitulo">Informe os seus dados abaixo.</p>
 
-     <div class="linha">
-      <input type="text" placeholder="CPF">
-      <input type="text" placeholder="RG">
-     </div>
+  <div class="linha">
+    <input type="text" name="nome" placeholder="Nome" [(ngModel)]="clientes.nome">
+    <input type="text" name="sobrenome" placeholder="Sobrenome" [(ngModel)]="clientes.sobrenome">
+  </div>
 
-   
-     <div class="linha">
-      <input type="email" placeholder="E-mail">
-     </div>
+  <div class="linha">
+    <input type="text" name="cpf" placeholder="CPF" [(ngModel)]="clientes.cpf" required maxlength="11">
+    <!-- Coloquei limite de 11 caracteres CPF-->
+    <input type="text" name="rg" placeholder="RG" [(ngModel)]="clientes.rg" required maxlength="9">
+    <!-- Coloquei limite de 9 caracteres RG-->
+  </div>
 
-     <div class="linha">
-      <input type="password" placeholder="Senha">
-      <input type="password" placeholder="Confirmar senha">
-     </div>
-    
-    <label class="termos">
-      <input type="checkbox">
-      Estou ciente e CONCORDO com os Termos de Serviço e Política de Privacidade da OverHub.
-    </label>
+  <div class="linha">
+    <input type="email" name="email" placeholder="E-mail" [(ngModel)]="clientes.email">
+  </div>
 
-    <button type="Submit">CRIAR CONTA</button>
- 
+  <div class="linha">
+    <input type="password" name="senha" placeholder="Senha" [(ngModel)]="clientes.senha">
+    <input type="password" name="confirmarSenha" placeholder="Confirmar senha" [(ngModel)]="confirmarSenha">
+  </div>
+
+  <label class="termos">
+    <input type="checkbox" name="termos" [(ngModel)]="aceitouTermos">
+    Estou ciente e CONCORDO com os Termos de Serviço e Política de Privacidade da OverHub.
+  </label>
+
+  <button type="button" (click)="salvar()">CRIAR CONTA</button>
 </form>
