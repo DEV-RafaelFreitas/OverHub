@@ -33,10 +33,25 @@ export class CarrinhoDeCompras implements OnInit {
       return;
     }
 
+    this.produtoService.listar().subscribe({
+    next: (produtos) => {
+      const avisos = this.carrinho.sincronizar(produtos);
+      if (avisos.length > 0) {
+        alert(avisos.join('\n'));
+        }
+      }
+    });
+
   }
 
   aumentar(item: ItemCarrinho): void {
-    this.carrinho.aumentar(item);
+    this.produtoService.buscarPorId(item.produto.id!).subscribe({
+      next: (atual) => {
+        item.produto = atual;
+        this.carrinho.aumentar(item);
+      },
+      error: () => alert('Não foi possível conferir o estoque deste produto.')
+    });
   }
 
   diminuirOuRemover(item: ItemCarrinho): void {
@@ -83,8 +98,26 @@ export class CarrinhoDeCompras implements OnInit {
       return;
     }
 
+    const destino = usuario.perfil == 'admin' ? '/perfil-admin' : '/perfil-user';
+
+    this.produtoService.listar().subscribe({
+      next: (produtosAtuais) => {
+        const avisos = this.carrinho.sincronizar(produtosAtuais);
+
+        if (avisos.length > 0) {
+          alert(avisos.join('\n') + '\n\nConfira o carrinho e tente novamente.');
+          return;
+        }
+
+        this.gravarPedido(usuario.id, destino);
+      },
+      error: () => alert('Não foi possível conferir o estoque. O json-server está rodando?')
+    });
+  }
+
+  private gravarPedido(usuarioId: number | string, destino: string): void {
     const pedido: Pedido = {
-      usuarioId: usuario.id,
+      usuarioId: usuarioId,
       itens: this.itens.map(item => ({
         produtoId: item.produto.id!,
         nome: item.produto.nome,
@@ -92,7 +125,7 @@ export class CarrinhoDeCompras implements OnInit {
         quantidade: item.quantidade
       })),
       frete: this.valorFrete,
-      total: this.total,
+      total:  this.total,
       data: new Date().toISOString()
     };
 
@@ -102,18 +135,13 @@ export class CarrinhoDeCompras implements OnInit {
           item.produto.estoque = item.produto.estoque - item.quantidade;
 
           this.produtoService.editar(item.produto).subscribe({
-            error: () => console.error('Erro ao atualizar o estoque de', item.produto.nome)
+            error: () => alert('Erro ao atualizar o estoque de' + item.produto.nome)
           });
         });
 
         alert('Compra finalizada com sucesso!');
         this.carrinho.limpar();
-
-        if (usuario.perfil === 'admin') {
-          this.router.navigate(['/perfil-admin']);
-        } else {
-          this.router.navigate(['/perfil-user']);
-        }
+        this.router.navigate([destino]);
       },
       error: () => alert('Erro ao finalizar a compra. O json-server está rodando?')
     });

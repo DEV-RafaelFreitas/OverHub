@@ -60,6 +60,30 @@ export class CarrinhoService {
         this.salvar([]);
     }
 
+    sincronizar(produtosAtuais: Produto[]): string[] {
+        const avisos: string[] = [];
+        const novaLista: ItemCarrinho[] = [];
+
+        this.itens().forEach(item => {
+            const atual = produtosAtuais.find(p => p.id === item.produto.id);
+
+            if (!atual || atual.estoque < 1) {
+                avisos.push(`"${item.produto.nome}" não está mais disponível e foi removido do carrinho.`);
+                return;
+            }
+
+            if (item.quantidade > atual.estoque) {
+                avisos.push(`"${atual.nome}": só restam ${atual.estoque} unidade(s). A quantidade foi ajustada.`);
+                novaLista.push(new ItemCarrinho(atual, atual.estoque));
+            } else {
+                novaLista.push(new ItemCarrinho(atual, item.quantidade));
+            }
+        });
+
+        this.salvar(novaLista);
+        return avisos;
+    }
+
     private chaveDoUsuario(): string | null {
         const usuario = this.AuthService.usuario();
         return usuario ? `carrinho-${usuario.id}` : null;
