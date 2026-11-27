@@ -15,17 +15,14 @@ import { FavoritosService } from '../services/favoritos.service';
   encapsulation: ViewEncapsulation.None
 })
 export class Home implements OnInit {
+  private produtoService = inject(ProdutoService);
+  private carrinhoService= inject(CarrinhoService);
 
   favoritos = inject(FavoritosService);
   produtos = signal<Produto[]>([]);
   carregando = signal(true);
   erro = signal(false);
-
-  constructor(
-    private produtoService: ProdutoService,
-    private carrinhoService: CarrinhoService
-  ) {}
-
+  
   ngOnInit(): void {
     this.carregando.set(true);
     this.erro.set(false);

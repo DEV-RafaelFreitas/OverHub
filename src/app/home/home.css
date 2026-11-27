@@ -73,7 +73,7 @@ h2 {
   padding: 30px 16px;
 }
 
-.boxcat>div {
+.boxcat > div {
   background-color: #0a0b24;
   border: rgb(28, 28, 73) solid 2px;
   border-radius: 7px;
@@ -89,7 +89,7 @@ h2 {
   transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
-.boxcat>div:hover {
+.boxcat > div:hover {
   transform: translateY(-4px);
   border-color: #434eb0;
 }
@@ -172,7 +172,7 @@ h2 {
 
 .container-imagem img {
   max-width: 100%;
-  max-height: 150%;
+  max-height: 100%;
   object-fit: cover;
 }
 
@@ -190,6 +190,12 @@ h2 {
   margin: 0 0 12px 0;
 }
 
+.texto-estoque-zero {
+  color: var(--color-danger, rgb(247, 57, 57));
+  margin-top: 16px;
+  text-align: center;
+}
+
 /* Preços e Favorito */
 
 .precos-container {
@@ -198,8 +204,12 @@ h2 {
   align-items: center;
   margin-bottom: 4px;
 }
-  
 
+.precos-container .actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
 
 .preco-atual {
   font-size: 1.15rem;
@@ -227,17 +237,22 @@ h2 {
   transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.btn-cart:hover {
+.btn-cart:not(:disabled):hover {
   transform: scale(1.15);
   color: #ff9d00;
 }
 
-.btn-cart:active {
+.btn-cart:not(:disabled):active {
   transform: scale(0.95);
 }
 
+.btn-cart:disabled {
+  color: rgba(255, 255, 255, .7);
+  cursor: not-allowed;
+}
+
 /* Botão de Coração */
-.btn-heart {
+.btn-fav {
   background: none;
   border: none;
   color: #ffffff;
@@ -249,32 +264,12 @@ h2 {
   transition: transform 0.15s ease, color 0.15s ease;
 }
 
-.btn-heart:hover {
+.btn-fav:hover .icon-heart {
   transform: scale(1.15);
   color: #ff5500;
 }
 
-.btn-heart.ativo {
-  color: #ff5500;
-}
-
-.btn-heart.ativo .icon-heart {
-  fill: #ff5500;
-}
-
-/* Parcelamento */
-.parcelamento {
-  font-size: 0.75rem;
-  color: #8c93a8;
-  margin: 0;
-}
-
-#kokoro{
-  margin-left: 70px;
-  
-}
-
-.btn-like {
+.btn-fav {
   background: none;
   border: none;
   padding: 0;
@@ -283,5 +278,14 @@ h2 {
   align-items: center;
 }
 
-.icon-heart { transition: 0.2s; }
-.btn-like.ativo .icon-heart { fill: #ff6a00; stroke: #ff6a00; }
+.btn-fav.ativo .icon-heart {
+  fill: #ff6a00;
+  stroke: #ff6a00;
+}
+
+/* Parcelamento */
+.parcelamento {
+  font-size: 0.75rem;
+  color: #8c93a8;
+  margin: 0;
+}
