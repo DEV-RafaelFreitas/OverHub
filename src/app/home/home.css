@@ -132,6 +132,7 @@ h2 {
   padding: 16px;
   color: #ffffff;
   transition: transform 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
 }
 
 .card-produto:hover {
@@ -190,24 +191,49 @@ h2 {
 }
 
 /* Preços e Favorito */
+
 .precos-container {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   margin-bottom: 4px;
 }
+  
+
 
 .preco-atual {
   font-size: 1.15rem;
   font-weight: 800;
   color: #ff5500;
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .preco-antigo {
   font-size: 0.8rem;
   color: #62687b;
   text-decoration: line-through;
+}
+
+/* Botão do carrinho */
+.btn-cart {
+  background: none;
+  border: none;
+  color: #ff5500;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.btn-cart:hover {
+  transform: scale(1.15);
+  color: #ff9d00;
+}
+
+.btn-cart:active {
+  transform: scale(0.95);
 }
 
 /* Botão de Coração */
@@ -241,4 +267,9 @@ h2 {
   font-size: 0.75rem;
   color: #8c93a8;
   margin: 0;
+}
+
+#kokoro{
+  margin-left: 70px;
+  
 }

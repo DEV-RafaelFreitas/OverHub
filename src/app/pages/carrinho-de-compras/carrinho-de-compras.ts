@@ -33,13 +33,6 @@ export class CarrinhoDeCompras implements OnInit {
       return;
     }
 
-    // Tenho que apagar esse bloco quando o botão "Adicionar ao carrinho" existir.
-    if (this.carrinho.itens().length === 0) {
-      this.produtoService.listar().subscribe({
-        next: (produtos) => produtos.forEach(p => this.carrinho.adicionar(p)),
-        error: () => alert('Não foi possível carregar os produtos. O json-server está rodando?')
-      });
-    }
   }
 
   aumentar(item: ItemCarrinho): void {
