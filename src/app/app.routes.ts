@@ -7,6 +7,7 @@ import { CarrinhoDeCompras } from './pages/carrinho-de-compras/carrinho-de-compr
 import { PerfilAdm } from './shared/perfil-adm/perfil-adm';
 import { PerfilUser } from './shared/perfil-user/perfil-user';
 import { Cadastro } from './pages/cadastro/cadastro';
+import { TelaCurtidas } from './pages/tela-curtidas/tela-curtidas';
 
 export const routes: Routes = [
   { 
@@ -53,5 +54,10 @@ export const routes: Routes = [
     path: 'produto-editar/:id',
     component: ProdutoFormComponent,
     title: 'Alteração de Produto'
+  },
+  { 
+     path: 'favoritos', component: TelaCurtidas ,
   }
+  
 ];
+
